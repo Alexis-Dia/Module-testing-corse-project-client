@@ -3,7 +3,7 @@
     "target": "es6",
     "lib": [
       "dom"
-    ],
+    ]
   },
   "include": [
     "src"
