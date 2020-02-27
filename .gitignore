@@ -1,0 +1,15 @@
+# webpack bundle
+dist
+
+# node
+node_modules
+.env
+npm-debug.log
+
+
+# idea
+.idea
+.idea/*
+
+# vsc
+.vscode/*
