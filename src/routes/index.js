@@ -1,5 +1,6 @@
 import CoreLayout from '../layouts/pageLayout/PageLayout'
 import Home from './home'
+import Reports from './reports'
 
 export const createRoutes = (store) => ({
         childRoutes: [
@@ -8,6 +9,13 @@ export const createRoutes = (store) => ({
                 component: CoreLayout,
                 indexRoute: Home,
                 childRoutes: []
+            },
+            {
+                path        : '/reports',
+                component   : CoreLayout,
+                indexRoute  : Reports,
+                childRoutes : [
+                ]
             },
         ]
     }

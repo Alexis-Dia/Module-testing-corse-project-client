@@ -73,16 +73,16 @@ export const STRING_DASH = '-';
 
 export const POP_UP_MESSAGE_TYPE_PRIMARY = 'primary';
 
-export const ASK_QUESTION_PAGE_PATH = '/askquestion';
-export const MY_QUESTION_PAGE_PATH = '/myquestions';
-export const FIND_QUESTION_PAGE_PATH = '/findquestion';
-export const POST_PAGE_PATH = '/post';
+export const REPORTS_PAGE_PATH = '/reports';
+export const ADD_REPORT_PAGE_PATH = '/addReport';
 export const EMPTY_PAGE_PATH = '/';
+export const TASKS_PAGE_PATH = '/tasks';
 export const REGISTARATION_PAGE_PATH = 'https://golos.io/create_account';
 
-export const TOP_QUESTIONS = 'Top quastions';
-export const ASK_QUESTION = 'Ask quastion';
-export const MY_QUESTIONS = 'My quastions';
+export const INFORMATION = 'Information';
+export const REPORTS = 'Reports';
+export const TASKS = 'Tasks';
+export const ADD_REPORT = 'Add report';
 export const FIND_QUESTION = 'Find question';
 
 

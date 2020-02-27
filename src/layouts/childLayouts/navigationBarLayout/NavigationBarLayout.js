@@ -5,7 +5,7 @@ import {browserHistory} from 'react-router'
 import SignUpForm from './signUp/SignUpForm'
 import LogInForm from './logIn/LoginForm'
 import { Modal, ModalBody } from 'reactstrap';
-import {EN, RU, I18, LANGUAGE_DEFAULT} from '../../../properties/properties'
+import {EN, RU, I18, LANGUAGE_DEFAULT, TASKS_PAGE_PATH, TASKS} from '../../../properties/properties'
 import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
@@ -23,13 +23,11 @@ import './NavigationBarLayout.scss'
 import {
   REGISTARATION_PAGE_PATH,
   EMPTY_PAGE_PATH,
-  ASK_QUESTION_PAGE_PATH,
-  MY_QUESTION_PAGE_PATH,
-  FIND_QUESTION_PAGE_PATH,
-  TOP_QUESTIONS,
-  ASK_QUESTION,
-  MY_QUESTIONS,
-  FIND_QUESTION
+  REPORTS_PAGE_PATH,
+  ADD_REPORT_PAGE_PATH,
+  INFORMATION,
+  REPORTS,
+  ADD_REPORT,
 } from '../../../properties/properties';
 import { DELETE_ALL_FLASH_MESSAGES } from '../../../api/flash/flashActions';
 import { DELETE_CURRENT_USER } from '../../../api/login/loginActions'
@@ -43,7 +41,7 @@ class NavigationBarLayout extends Component {
       modalLogIn: false,
       modalDrawer: false,
       language: LANGUAGE_DEFAULT,
-      currentPage: TOP_QUESTIONS,
+      currentPage: INFORMATION,
     };
   }
 
@@ -68,34 +66,34 @@ class NavigationBarLayout extends Component {
     browserHistory.push(path);
     this.toggleDrawer()
     this.setState({
-      currentPage: TOP_QUESTIONS,
+      currentPage: INFORMATION,
+    });
+  };
+
+  onClickAllTasks = () => {
+    const path = TASKS_PAGE_PATH;
+    browserHistory.push(path);
+    this.toggleDrawer()
+    this.setState({
+      currentPage: TASKS,
     });
   };
 
   onClickAskQuestion = () => {
-    const path = ASK_QUESTION_PAGE_PATH;
+    const path = REPORTS_PAGE_PATH;
     browserHistory.push(path);
     this.toggleDrawer()
     this.setState({
-      currentPage: ASK_QUESTION,
+      currentPage: REPORTS,
     });
   };
 
   onClickMyQuestions = () => {
-    const path = MY_QUESTION_PAGE_PATH;
+    const path = ADD_REPORT_PAGE_PATH;
     browserHistory.push(path);
     this.toggleDrawer()
     this.setState({
-      currentPage: MY_QUESTIONS,
-    });
-  };
-
-  onClickFindQuestion = () => {
-    const path = FIND_QUESTION_PAGE_PATH;
-    browserHistory.push(path);
-    this.toggleDrawer()
-    this.setState({
-      currentPage: FIND_QUESTION,
+      currentPage: ADD_REPORT,
     });
   };
 
@@ -283,33 +281,43 @@ class NavigationBarLayout extends Component {
                         (
                           <Menu style={{backgroundColor: '#FFFBF7', width: '100%'}}>
 
-                            {(this.state.currentPage === "Top quastions")
+                            {(this.state.currentPage === "Information")
                               ?
                               (
-                                <MenuItem primaryText="Top quastions" onClick={this.onClickTopQuestion} style={{backgroundColor: '#FF8F4F'}}/>
+                                <MenuItem primaryText="Information" onClick={this.onClickTopQuestion} style={{backgroundColor: '#FF8F4F'}}/>
                               ) :
                               (
-                                <MenuItem primaryText="Top quastions" onClick={this.onClickTopQuestion} />
+                                <MenuItem primaryText="Information" onClick={this.onClickTopQuestion} />
                               )
                             }
 
-                            {(this.state.currentPage === "Ask quastion")
+                            {(this.state.currentPage === "Tasks")
+                                ?
+                                (
+                                    <MenuItem primaryText="Tasks" onClick={this.onClickAllTasks} style={{backgroundColor: '#FF8F4F'}}/>
+                                ) :
+                                (
+                                    <MenuItem primaryText="Tasks" onClick={this.onClickAllTasks} />
+                                )
+                            }
+
+                            {(this.state.currentPage === "Reports")
                               ?
                               (
-                                <MenuItem primaryText="Ask quastion" onClick={this.onClickAskQuestion} style={{backgroundColor: '#FF8F4F'}}/>
+                                <MenuItem primaryText="Reports" onClick={this.onClickAskQuestion} style={{backgroundColor: '#FF8F4F'}}/>
                               ) :
                               (
-                                <MenuItem primaryText="Ask quastion" onClick={this.onClickAskQuestion} />
+                                <MenuItem primaryText="Reports" onClick={this.onClickAskQuestion} />
                               )
                             }
 
-                            {(this.state.currentPage === "My quastions")
+                            {(this.state.currentPage === "Add report")
                               ?
                               (
-                                <MenuItem primaryText="My quastions" onClick={this.onClickMyQuestions} style={{backgroundColor: '#FF8F4F'}}/>
+                                <MenuItem primaryText="Add report" onClick={this.onClickMyQuestions} style={{backgroundColor: '#FF8F4F'}}/>
                               ) :
                               (
-                                <MenuItem primaryText="My quastions" onClick={this.onClickMyQuestions} />
+                                <MenuItem primaryText="Add report" onClick={this.onClickMyQuestions} />
                               )
                             }
 
@@ -329,13 +337,13 @@ class NavigationBarLayout extends Component {
                         (
                           <Menu style={{backgroundColor: '#FFFBF7', width: '100%'}}>
 
-                            {(this.state.currentPage === "Top quastions")
+                            {(this.state.currentPage === "Information")
                               ?
                               (
-                                <MenuItem primaryText="Top quastions" onClick={this.onClickTopQuestion} style={{backgroundColor: '#FF8F4F'}}/>
+                                <MenuItem primaryText="Information" onClick={this.onClickTopQuestion} style={{backgroundColor: '#FF8F4F'}}/>
                               ) :
                               (
-                                <MenuItem primaryText="Top quastions" onClick={this.onClickTopQuestion} />
+                                <MenuItem primaryText="Information" onClick={this.onClickTopQuestion} />
                               )
                             }
 

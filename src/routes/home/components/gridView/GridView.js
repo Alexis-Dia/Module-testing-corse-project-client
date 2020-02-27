@@ -36,7 +36,7 @@ class GridView extends Component {
   render = () => {
 
     return (
-      <div>
+      <div style={{height: '600px'}}>
 
       </div>
     )
