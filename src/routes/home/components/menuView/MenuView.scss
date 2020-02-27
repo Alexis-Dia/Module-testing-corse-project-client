@@ -1,0 +1,42 @@
+.style0-menu {
+  background-color: transparent;
+  position: relative;
+  height: 20px;
+  margin-top: -20px;
+  top: 20px;
+  z-index: 100;
+  /*right: '0px',*/
+  display: grid;/*
+  grid-template-areas: header;*/
+  grid-template-columns: repeat(auto-fill, minmax(20px, 100px));
+  /*textAlign: 'center',*/
+  /*alignItems: 'center',*/
+  justify-items: center;
+  justify-content: end;
+}
+
+.style3-menu {
+  color: #ffffff;
+  font-size: 18pt;
+}
+
+.style-menu {
+  display: grid;
+  /*
+  grid-template-areas: header article aside;
+  */
+}
+
+.header-menu {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.article-menu {
+  grid-area: article;
+}
+
+.aside-menu {
+  grid-area: aside;
+}
+

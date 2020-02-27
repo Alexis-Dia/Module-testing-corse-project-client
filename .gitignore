@@ -1,11 +1,14 @@
 # webpack bundle
 dist
+dist/*
+/dist
+/dist/**
 
 # node
 node_modules
+/node_modules/*
 .env
 npm-debug.log
-
 
 # idea
 .idea
@@ -13,3 +16,7 @@ npm-debug.log
 
 # vsc
 .vscode/*
+
+package-lock.json
+
+
