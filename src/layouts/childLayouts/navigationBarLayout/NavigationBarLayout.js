@@ -5,7 +5,16 @@ import {browserHistory} from 'react-router'
 import SignUpForm from './signUp/SignUpForm'
 import LogInForm from './logIn/LoginForm'
 import { Modal, ModalBody } from 'reactstrap';
-import {EN, RU, I18, LANGUAGE_DEFAULT, TASKS_PAGE_PATH, TASKS} from '../../../properties/properties'
+import {
+    EN,
+    RU,
+    I18,
+    LANGUAGE_DEFAULT,
+    TASKS_PAGE_PATH,
+    TASKS,
+    ROLE_DRIVER,
+    ROLE_ADMIN
+} from '../../../properties/properties'
 import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
@@ -116,6 +125,16 @@ class NavigationBarLayout extends Component {
   render = () => {
 
     const {isAuthenticated} = this.props.auth;
+    let userIsDriver = false;
+    let userIsAdmin = false;
+    if (isAuthenticated) {
+        let userRole = this.props.auth.user.userRole;
+        if (userRole === ROLE_DRIVER) {
+            userIsDriver = true;
+        } else if (userRole === ROLE_ADMIN) {
+            userIsAdmin = true;
+        }
+    }
 
     const userAppBar = (
       <div>
@@ -276,7 +295,7 @@ class NavigationBarLayout extends Component {
                   <nav
                     className="navbar navbar-light navbar-expand justify-content-center">
                     <div className="navbar-collapse collapse w-100" id="collapsingNavbar3">
-                      {isAuthenticated
+                      {userIsDriver
                         ?
                         (
                           <Menu style={{backgroundColor: '#FFFBF7', width: '100%'}}>

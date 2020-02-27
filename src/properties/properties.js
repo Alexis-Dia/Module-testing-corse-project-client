@@ -83,8 +83,9 @@ export const INFORMATION = 'Information';
 export const REPORTS = 'Reports';
 export const TASKS = 'Tasks';
 export const ADD_REPORT = 'Add report';
-export const FIND_QUESTION = 'Find question';
 
+export const ROLE_DRIVER = 'USER';
+export const ROLE_ADMIN = 'ADMIN';
 
 export const DEFAULT_ORDERING_PARAMETERS = {
     'page': 0,
