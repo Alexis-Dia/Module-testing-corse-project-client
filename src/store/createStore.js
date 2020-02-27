@@ -5,7 +5,7 @@ import makeRootReducer from './reducers'
 import { updateLocation } from './location'
 import createSagaMiddleware from 'redux-saga'
 import mySaga from '../sagas/rootSagas'
-import { LOGIN_GOLOS } from '../api/login/loginActions'
+import { LOGIN } from '../api/login/loginActions'
 
 const createStore = (initialState = {}) => {
   // ======================================================
@@ -56,16 +56,6 @@ const createStore = (initialState = {}) => {
     })
   }
 
-  if (localStorage.wif) {
-     const data = {
-       user:
-         {
-           username: localStorage.username,
-           password: localStorage.wif
-         }
-     };
-     store.dispatch({ type: LOGIN_GOLOS, data });
-  }
   //setAuthorizationToken(localStorage.jwtToken);
   //store.dispatch(setCurrentUser(jwt.decode('dfgdfgdfgdfgdfgdfgdfg')));
 

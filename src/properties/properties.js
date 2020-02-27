@@ -36,7 +36,6 @@ export const PAGE_STATUS_UNDEFINED = 'undefined';
 export const APPLICATION_JSON = 'application/json';
 export const JSON = 'json';
 export const BEARER = 'Bearer ';
-export const MAIN_TAG = 'golosanswers';
 
 export const ENCODING_UTF8 = 'utf8';
 export const SESSION_TIME_IN_SECONDS = 8;

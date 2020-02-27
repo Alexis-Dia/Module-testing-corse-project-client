@@ -1,7 +1,7 @@
 import { fetchAuth } from './loginApi'
 import { takeEvery, call, put } from 'redux-saga/effects'
 import {fetchLoginWithGolos, fetchPrivateKeyWithGolos} from "./loginApi";
-import { SUCCESS, FAILURE, UNAUTHORIZED, LOGIN_GOLOS } from './loginActions'
+import { SUCCESS, FAILURE, UNAUTHORIZED, LOGIN } from './loginActions'
 
 export function fetchAuthApi (data) {
     console.log("1")
@@ -16,18 +16,19 @@ export function fetchAuthApi (data) {
 
 export function * tryFetchAuth (data) {
         const { response, error } = yield call(fetchAuthApi, data);
-
-        if (response.status === 401) {
-            yield put({type: LOGIN_GOLOS + UNAUTHORIZED, response})
-        } else if (response) {
-            yield put({ type: LOGIN_GOLOS + SUCCESS, response })
+    console.log("2.1 status = ", response)
+    console.log("2.2 status = ", error)
+        if (response.httpStatus === 401) {
+            yield put({type: LOGIN + UNAUTHORIZED, response})
+        } else if (response.httpStatus === 200) {
+            yield put({ type: LOGIN + SUCCESS, response })
         } else {
-            yield put({ type: LOGIN_GOLOS + FAILURE, error })
+            yield put({ type: LOGIN + FAILURE, error })
         }
 
 }
 
 export function * loginAuthFetch () {
-    yield takeEvery(LOGIN_GOLOS, tryFetchAuth)
+    yield takeEvery(LOGIN, tryFetchAuth)
 }
 

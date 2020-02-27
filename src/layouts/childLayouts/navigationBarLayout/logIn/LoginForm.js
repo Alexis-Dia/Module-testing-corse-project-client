@@ -4,7 +4,7 @@ import {
   ADD_FLASH_MESSAGE,
   MESSAGE_LOG_IN_SUCCESSFULY,
 } from '../../../../api/flash/flashActions'
-import { LOGIN_GOLOS } from '../../../../api/login/loginActions'
+import { LOGIN } from '../../../../api/login/loginActions'
 import TextFieldGroup from '../signUp/textFieldGroup/TextFieldGroup';
 import './LoginForm.scss';
 
@@ -24,6 +24,7 @@ class LoginForm extends Component {
         if (nextprops.user !== this.props.user) {
             this.setState({auth: nextprops.user});
             if (nextprops.user.isAuthenticated) {
+                console.log("showFlashMessage = ")
                 this.props.showFlashMessage({ type: 'success',  text: MESSAGE_LOG_IN_SUCCESSFULY});
                 this.props.toggleLogIn();
             }
@@ -40,7 +41,7 @@ class LoginForm extends Component {
                 {
                     user:
                         {
-                            username: this.state.identifier,
+                            emailAddress: this.state.identifier,
                             password: this.state.password
                         }
                 }
@@ -59,19 +60,19 @@ class LoginForm extends Component {
         return (
             <div className="logInStyle-1">
                 <form onSubmit={this.onSubmit} >
-                    <h1>Login with Golos.io</h1>
+                    <h4>Login to carriages system</h4>
                     { this.state.auth.user.errors !== '' && <div className="alert alert-danger">{this.state.auth.user.errors}</div>}
                     {/*{ this.props.user.user.errors !== '' && <div className="alert alert-danger">{this.props.user.errors}</div>}*/}
                     <TextFieldGroup
                         field="identifier"
-                        label="Name"
+                        label="Email"
                         value={identifier}
                         onChange={this.onChange}
                     />
 
                     <TextFieldGroup
                         field="password"
-                        label="Private posting key"
+                        label="Password"
                         value={password}
                         onChange={this.onChange}
                         type="password"
@@ -94,7 +95,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        login: (data) => dispatch({type: LOGIN_GOLOS, data}),
+        login: (data) => dispatch({type: LOGIN, data}),
         showFlashMessage: (data) => dispatch({type: ADD_FLASH_MESSAGE, data})
     }
 };

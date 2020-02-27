@@ -14,26 +14,30 @@ import {
 
 export function apiCall (hostname, port, method, body) {
 
-    var url = HTTP + hostname + DELIMITER + port + PATH_METHOD_AUTH_AUTHENTICATE;
+    var url = HTTP + hostname + DELIMITER + port + PATH_METHOD_AUTH_AUTHENTICATE + "?emailAddress=" + body.data.user.emailAddress + "&password=" + body.data.user.password;
     console.log("url = ", url)
     console.log("body = ", body)
     const options = {
         method: method,
         url: url,
         headers: {
-            'Content-Type': APPLICATION_JSON,
+            "Access-Control-Allow-Credentials" : "true",
+            "Access-Control-Allow-Origin" : url,
+            "Content-Type" : "application/json"
         },
         responseType: JSON
     }
     if (body.data) {
-        options.data = body.data
+        options.data = body.data.user
     }
     return axios(options)
         .then(response => {
-            return response.data
+            console.error('axiosApi response 0 = ', response);
+            return { 'httpStatus': response.status, 'result': response.data }
         })
         .catch(error => {
-            throw error
+            console.error('axiosApi error 1 = ', error);
+            throw error;
         })
 }
 
@@ -62,7 +66,7 @@ export function apiCallForLoggedUser (hostname, port, pathMethod, method, body =
             return { 'httpStatus': PAGE_STATUS_200, 'result': response.data }
         })
         .catch(error => {
-            console.error('axiosApi error = ', error);
+            console.error('axiosApi error 2 = ', error);
             return  { 'httpStatus': PAGE_STATUS_500}
         })
 }
