@@ -295,52 +295,53 @@ class NavigationBarLayout extends Component {
                   <nav
                     className="navbar navbar-light navbar-expand justify-content-center">
                     <div className="navbar-collapse collapse w-100" id="collapsingNavbar3">
-                      {userIsDriver
+                      {isAuthenticated
                         ?
-                        (
-                          <Menu style={{backgroundColor: '#FFFBF7', width: '100%'}}>
-
-                            {(this.state.currentPage === "Information")
-                              ?
-                              (
-                                <MenuItem primaryText="Information" onClick={this.onClickTopQuestion} style={{backgroundColor: '#FF8F4F'}}/>
-                              ) :
-                              (
-                                <MenuItem primaryText="Information" onClick={this.onClickTopQuestion} />
-                              )
-                            }
-
-                            {(this.state.currentPage === "Tasks")
-                                ?
+                          (userIsDriver ?
                                 (
-                                    <MenuItem primaryText="Tasks" onClick={this.onClickAllTasks} style={{backgroundColor: '#FF8F4F'}}/>
-                                ) :
-                                (
-                                    <MenuItem primaryText="Tasks" onClick={this.onClickAllTasks} />
-                                )
-                            }
+                                    <Menu style={{backgroundColor: '#FFFBF7', width: '100%'}}>
 
-                            {(this.state.currentPage === "Reports")
-                              ?
-                              (
-                                <MenuItem primaryText="Reports" onClick={this.onClickAskQuestion} style={{backgroundColor: '#FF8F4F'}}/>
-                              ) :
-                              (
-                                <MenuItem primaryText="Reports" onClick={this.onClickAskQuestion} />
-                              )
-                            }
+                                      {(this.state.currentPage === "Information")
+                                          ?
+                                          (
+                                              <MenuItem primaryText="Information" onClick={this.onClickTopQuestion} style={{backgroundColor: '#FF8F4F'}}/>
+                                          ) :
+                                          (
+                                              <MenuItem primaryText="Information" onClick={this.onClickTopQuestion} />
+                                          )
+                                      }
 
-                            {(this.state.currentPage === "Add report")
-                              ?
-                              (
-                                <MenuItem primaryText="Add report" onClick={this.onClickMyQuestions} style={{backgroundColor: '#FF8F4F'}}/>
-                              ) :
-                              (
-                                <MenuItem primaryText="Add report" onClick={this.onClickMyQuestions} />
-                              )
-                            }
+                                      {(this.state.currentPage === "Tasks")
+                                          ?
+                                          (
+                                              <MenuItem primaryText="Tasks" onClick={this.onClickAllTasks} style={{backgroundColor: '#FF8F4F'}}/>
+                                          ) :
+                                          (
+                                              <MenuItem primaryText="Tasks" onClick={this.onClickAllTasks} />
+                                          )
+                                      }
 
-                            {/*{(this.state.currentPage === "Find question")
+                                      {(this.state.currentPage === "Reports")
+                                          ?
+                                          (
+                                              <MenuItem primaryText="Reports" onClick={this.onClickAskQuestion} style={{backgroundColor: '#FF8F4F'}}/>
+                                          ) :
+                                          (
+                                              <MenuItem primaryText="Reports" onClick={this.onClickAskQuestion} />
+                                          )
+                                      }
+
+                                      {(this.state.currentPage === "Add report")
+                                          ?
+                                          (
+                                              <MenuItem primaryText="Add report" onClick={this.onClickMyQuestions} style={{backgroundColor: '#FF8F4F'}}/>
+                                          ) :
+                                          (
+                                              <MenuItem primaryText="Add report" onClick={this.onClickMyQuestions} />
+                                          )
+                                      }
+
+                                      {/*{(this.state.currentPage === "Find question")
                               ?
                               (
                                 <MenuItem primaryText="Find question" onClick={this.onClickFindQuestion} style={{backgroundColor: '#FF8F4F'}}/>
@@ -350,8 +351,54 @@ class NavigationBarLayout extends Component {
                               )
                             }*/}
 
-                          </Menu>
-                        )
+                                    </Menu>
+                                ) :
+                                (
+                                    <Menu style={{backgroundColor: '#FFFBF7', width: '100%'}}>
+
+                                      {(this.state.currentPage === "Information")
+                                          ?
+                                          (
+                                              <MenuItem primaryText="Information" onClick={this.onClickTopQuestion} style={{backgroundColor: '#FF8F4F'}}/>
+                                          ) :
+                                          (
+                                              <MenuItem primaryText="Information" onClick={this.onClickTopQuestion} />
+                                          )
+                                      }
+
+                                      {(this.state.currentPage === "Tasks")
+                                          ?
+                                          (
+                                              <MenuItem primaryText="Tasks" onClick={this.onClickAllTasks} style={{backgroundColor: '#FF8F4F'}}/>
+                                          ) :
+                                          (
+                                              <MenuItem primaryText="Tasks" onClick={this.onClickAllTasks} />
+                                          )
+                                      }
+
+                                      {(this.state.currentPage === "Reports")
+                                          ?
+                                          (
+                                              <MenuItem primaryText="Reports" onClick={this.onClickAskQuestion} style={{backgroundColor: '#FF8F4F'}}/>
+                                          ) :
+                                          (
+                                              <MenuItem primaryText="Reports" onClick={this.onClickAskQuestion} />
+                                          )
+                                      }
+
+                                      {/*{(this.state.currentPage === "Find question")
+                              ?
+                              (
+                                <MenuItem primaryText="Find question" onClick={this.onClickFindQuestion} style={{backgroundColor: '#FF8F4F'}}/>
+                              ) :
+                              (
+                                <MenuItem primaryText="Find question" onClick={this.onClickFindQuestion} />
+                              )
+                            }*/}
+
+                                    </Menu>
+                                )
+                          )
                         :
                         (
                           <Menu style={{backgroundColor: '#FFFBF7', width: '100%'}}>
