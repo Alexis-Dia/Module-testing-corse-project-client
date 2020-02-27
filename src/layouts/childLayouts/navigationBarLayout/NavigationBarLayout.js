@@ -145,7 +145,7 @@ class NavigationBarLayout extends Component {
             titleStyle={{color: '#000000', fontSize: '18px'}}*/
             title='Carriages-system'
             style={{backgroundColor: '#ffffff', zIndex: 990}}
-            titleStyle={{color: '#0282FF'}}
+            titleStyle={{color: '#02162c'}}
             iconElementLeft={
               <IconButton iconStyle={{fill: '#000000'}}>
                 <NavigationMenu/>
@@ -205,7 +205,7 @@ class NavigationBarLayout extends Component {
           //title={<img src={require('./img/navigationBarLayout/OrangeryLogo.png')}/>}
           title='Carriages-system'
           style={{backgroundColor: '#ffffff', zIndex: 990}}
-          titleStyle={{color: '#0282FF'}}
+          titleStyle={{color: '#02162c'}}
           iconElementLeft={
             <IconButton iconStyle={{fill: '#000000'}}>
               <NavigationMenu/>
