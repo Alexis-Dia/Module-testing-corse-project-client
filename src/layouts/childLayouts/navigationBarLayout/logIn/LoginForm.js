@@ -32,7 +32,10 @@ class LoginForm extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
+
         if (true) {
+            console.log("this.state.identifier = ", this.state.identifier)
+            console.log("this.state.password = ", this.state.password)
             this.props.login(
                 {
                     user:
@@ -42,6 +45,7 @@ class LoginForm extends Component {
                         }
                 }
             );
+            console.log("3")
         }
     };
 
@@ -74,7 +78,7 @@ class LoginForm extends Component {
                     />
 
                     <div className="form-group">
-                        <button className="btn btn-primary btn-lg" disabled={this.props.user.isAuthenticated}>Login</button>
+                        <button className="btn btn-primary btn-lg" disabled={false}>Login</button>
                     </div>
                 </form>
             </div>
