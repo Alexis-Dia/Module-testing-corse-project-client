@@ -101,10 +101,11 @@ class AskQuestionView extends Component {
       <div style={{height: '600px'}}>
         <MuiThemeProvider>
           <FlatButton
+
             backgroundColor="#a4c639"
             hoverColor="#8AA62F"
-            icon={<Reply color={'#ffffff'}/>}
-            style={{marginLeft: '1%', marginTop: '3%'}}
+            icon={<Reply color={'#ffffff'} style={{marginBottom: '10px'}}/>}
+            style={{marginLeft: '1%', marginTop: '3%', maxWidth: '60px', maxHeight: '25px', minWidth: '60px', minHeight: '25px'}}
             onClick={this.returnToMainPage}
           />
           <div className='ask-form'>
@@ -117,7 +118,7 @@ class AskQuestionView extends Component {
                 frontendError={this.state.headValueErrMeassage}
               />
               <div className='button1'>
-                <button disabled={!this.state.auth.isAuthenticated} className="btn btn-primary btn-lg">Ask your
+                <button disabled={!this.state.auth.isAuthenticated} className="btn btn-primary btn-sm">Ask your
                   quastion
                 </button>
               </div>

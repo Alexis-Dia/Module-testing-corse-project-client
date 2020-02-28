@@ -76,12 +76,19 @@ export const POP_UP_MESSAGE_TYPE_PRIMARY = 'primary';
 export const REPORTS_PAGE_PATH = '/reports';
 export const ADD_REPORT_PAGE_PATH = '/addReport';
 export const EMPTY_PAGE_PATH = '/';
-export const TASKS_PAGE_PATH = '/tasks';
-export const REGISTARATION_PAGE_PATH = 'https://golos.io/create_account';
+export const VIEW_ALL_DRIVERS_PAGE_PATH = '/viewDrivers';
+export const VIEW_TASKS_PAGE_PATH = '/viewTasks';
+export const CREATE_TASK_PAGE_PATH = '/createTask';
+export const VIEW_CARS_PAGE_PATH = '/viewCars';
+export const CREATE_CAR_PAGE_PATH = '/createCar';
 
-export const INFORMATION = 'Information';
+export const INFORMATION = 'MyInformation';
+export const VIEW_ALL_DRIVERS = 'ViewAllDrivers';
 export const REPORTS = 'Reports';
-export const TASKS = 'Tasks';
+export const CREATE_CAR = 'CreateCar';
+export const VIEW_CARS = 'ViewCars';
+export const VIEW_TASKS = 'ViewTasks';
+export const CREATE_TASK = 'CreateTask';
 export const ADD_REPORT = 'Add report';
 
 export const ROLE_DRIVER = 'USER';

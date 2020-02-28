@@ -60,7 +60,7 @@ class LoginForm extends Component {
         return (
             <div className="logInStyle-1">
                 <form onSubmit={this.onSubmit} >
-                    <h4>Login to carriages system</h4>
+                    <h6>Login to carriages system</h6>
                     { this.state.auth.user.errors !== '' && <div className="alert alert-danger">{this.state.auth.user.errors}</div>}
                     {/*{ this.props.user.user.errors !== '' && <div className="alert alert-danger">{this.props.user.errors}</div>}*/}
                     <TextFieldGroup
@@ -79,7 +79,7 @@ class LoginForm extends Component {
                     />
 
                     <div className="form-group">
-                        <button className="btn btn-primary btn-lg" disabled={false}>Login</button>
+                        <button className="btn btn-primary btn-sm" disabled={false}>Login</button>
                     </div>
                 </form>
             </div>
