@@ -1,9 +1,8 @@
-import { fetchAuth } from './loginApi'
 import { takeEvery, call, put } from 'redux-saga/effects'
 import { fetchCars } from "./carApi";
-import { SUCCESS, FAILURE, UNAUTHORIZED, GET_CARS } from './carActions'
+import { SUCCESS, FAILURE, UNAUTHORIZED, GET_CARS} from './carActions'
 
-export function fetchAuthApi (data) {
+export function fetchCarsApi (data) {
     console.log("1")
     return fetchCars(data)
         .then(data => {
@@ -14,8 +13,8 @@ export function fetchAuthApi (data) {
         })
 }
 
-export function * tryFetchAuth (data) {
-        const { response, error } = yield call(fetchAuthApi, data);
+export function * tryFetchCars (data) {
+        const { response, error } = yield call(fetchCarsApi, data);
     console.log("2.1 status = ", response)
     console.log("2.2 status = ", error)
         if (response.httpStatus === 401) {
@@ -29,6 +28,6 @@ export function * tryFetchAuth (data) {
 }
 
 export function * carsFetch () {
-    yield takeEvery(GET_CARS, tryFetchAuth)
+    yield takeEvery(GET_CARS, tryFetchCars)
 }
 

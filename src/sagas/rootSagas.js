@@ -12,6 +12,6 @@ export default function * rootSaga () {
     fork(driversFetch),
     fork(carsFetch),
     fork(reportsFetch),
-    fork(tasksFetch),
+    fork(tasksFetch)
   ]
 }

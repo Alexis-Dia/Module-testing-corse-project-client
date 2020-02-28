@@ -15,8 +15,8 @@ export function fetchAuthApi (data) {
 
 export function * tryFetchAuth (data) {
         const { response, error } = yield call(fetchAuthApi, data);
-    console.log("2.1 status = ", response)
-    console.log("2.2 status = ", error)
+        console.log("2.1 status = ", response)
+        console.log("2.2 status = ", error)
         if (response.httpStatus === 401) {
             yield put({type: LOGIN + UNAUTHORIZED, response})
         } else if (response.httpStatus === 200) {
@@ -28,8 +28,11 @@ export function * tryFetchAuth (data) {
 }
 
 export function * loginAuthFetch () {
+    console.log("21w")
     yield takeEvery(LOGIN, tryFetchAuth)
 }
+
+
 
 export function fetchDriversApi (data) {
     console.log("1")

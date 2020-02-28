@@ -1,4 +1,3 @@
-import { fetchAuth } from './loginApi'
 import { takeEvery, call, put } from 'redux-saga/effects'
 import { fetchTasks } from "./taskApi";
 import { SUCCESS, FAILURE, UNAUTHORIZED, GET_TASKS } from './taskActions'

@@ -1,4 +1,3 @@
-import { fetchReports } from './loginApi'
 import { takeEvery, call, put } from 'redux-saga/effects'
 import { SUCCESS, FAILURE, UNAUTHORIZED, GET_REPORTS } from './reportActions'
 
