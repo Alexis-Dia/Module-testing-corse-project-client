@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import GridView from './myInformationView/InformationView'
+import MyInformationView from './myInformationView/InformationView'
 import FooterView from './footerView/FooterView'
 import './MainView.scss'
 
@@ -9,7 +9,7 @@ export default class MainView extends Component {
     return (
       <div>
         <div className='main-header'>
-          <GridView />
+          <MyInformationView />
           <FooterView />
         </div>
       </div>
