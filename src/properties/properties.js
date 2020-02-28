@@ -73,14 +73,14 @@ export const STRING_DASH = '-';
 
 export const POP_UP_MESSAGE_TYPE_PRIMARY = 'primary';
 
-export const REPORTS_PAGE_PATH = '/reports';
-export const ADD_REPORT_PAGE_PATH = '/addReport';
 export const EMPTY_PAGE_PATH = '/';
 export const VIEW_ALL_DRIVERS_PAGE_PATH = '/viewDrivers';
-export const VIEW_TASKS_PAGE_PATH = '/viewTasks';
-export const CREATE_TASK_PAGE_PATH = '/createTask';
 export const VIEW_CARS_PAGE_PATH = '/viewCars';
 export const CREATE_CAR_PAGE_PATH = '/createCar';
+export const VIEW_TASKS_PAGE_PATH = '/viewTasks';
+export const CREATE_TASK_PAGE_PATH = '/createTask';
+export const REPORTS_PAGE_PATH = '/reports';
+export const ADD_REPORT_PAGE_PATH = '/addReport';
 
 export const INFORMATION = 'MyInformation';
 export const VIEW_ALL_DRIVERS = 'ViewAllDrivers';
