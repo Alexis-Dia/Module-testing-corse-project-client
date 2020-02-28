@@ -13,7 +13,10 @@ export const PATH_METHOD_AUTH_AUTHENTICATE = '/auth/authenticate';
 export const PATH_METHOD_GET_ALL_DRIVERS = '/user/allDrivers';
 export const PATH_METHOD_GET_ALL_CARS = '/car/all';
 export const PATH_METHOD_GET_ALL_TASKS = '/task/all';
+export const PATH_METHOD_GET_MINE_TASKS = '/task/allMine';
+export const PATH_METHOD_GET_ACTIVE_TASKS = '/task/allActive';
 export const PATH_METHOD_GET_ALL_REPORTS = '/report/all';
+export const PATH_METHOD_GET_REPORTS_BY_USR_ID = '/report/***';
 
 export const HTTPS = 'HTTPS://';
 export const HTTP = 'HTTP://';

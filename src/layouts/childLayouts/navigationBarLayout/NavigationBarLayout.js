@@ -347,7 +347,7 @@ class NavigationBarLayout extends Component {
                                                         (
                                                             <Menu style={{backgroundColor: '#FFFBF7', width: '100%'}}>
 
-                                                                {(this.state.currentPage === "MyInformation")
+                                                                {(this.props.location.pathname === EMPTY_PAGE_PATH)
                                                                     ?
                                                                     (
                                                                         <MenuItem primaryText="My information"
@@ -360,7 +360,7 @@ class NavigationBarLayout extends Component {
                                                                     )
                                                                 }
 
-                                                                {(this.state.currentPage === "ViewTasks")
+                                                                {(this.props.location.pathname === VIEW_TASKS_PAGE_PATH)
                                                                     ?
                                                                     (
                                                                         <MenuItem primaryText="Tasks"
@@ -373,7 +373,7 @@ class NavigationBarLayout extends Component {
                                                                     )
                                                                 }
 
-                                                                {(this.state.currentPage === "Reports")
+                                                                {(this.props.location.pathname === REPORTS_PAGE_PATH)
                                                                     ?
                                                                     (
                                                                         <MenuItem primaryText="Reports"
@@ -386,7 +386,7 @@ class NavigationBarLayout extends Component {
                                                                     )
                                                                 }
 
-                                                                {(this.state.currentPage === "Add report")
+                                                                {(this.props.location.pathname === ADD_REPORT_PAGE_PATH)
                                                                     ?
                                                                     (
                                                                         <MenuItem primaryText="Add report"
@@ -404,7 +404,7 @@ class NavigationBarLayout extends Component {
                                                         (
                                                             <Menu style={{backgroundColor: '#FFFBF7', width: '100%'}}>
 
-                                                                {(this.state.currentPage === "MyInformation")
+                                                                {(this.props.location.pathname === EMPTY_PAGE_PATH)
                                                                     ?
                                                                     (
                                                                         <MenuItem primaryText="My information"
@@ -417,7 +417,7 @@ class NavigationBarLayout extends Component {
                                                                     )
                                                                 }
 
-                                                                {(this.state.currentPage === "ViewAllDrivers")
+                                                                {(this.props.location.pathname === VIEW_ALL_DRIVERS_PAGE_PATH)
                                                                     ?
                                                                     (
                                                                         <MenuItem primaryText="View all drivers"
@@ -430,7 +430,7 @@ class NavigationBarLayout extends Component {
                                                                     )
                                                                 }
 
-                                                                {(this.state.currentPage === "ViewCars")
+                                                                {(this.props.location.pathname === VIEW_CARS_PAGE_PATH)
                                                                     ?
                                                                     (
                                                                         <MenuItem primaryText="View cars"
@@ -443,7 +443,7 @@ class NavigationBarLayout extends Component {
                                                                     )
                                                                 }
 
-                                                                {(this.state.currentPage === "CreateCar")
+                                                                {(this.props.location.pathname === CREATE_CAR_PAGE_PATH)
                                                                     ?
                                                                     (
                                                                         <MenuItem primaryText="Create car"
@@ -456,7 +456,7 @@ class NavigationBarLayout extends Component {
                                                                     )
                                                                 }
 
-                                                                {(this.state.currentPage === "ViewTasks")
+                                                                {(this.props.location.pathname === VIEW_TASKS_PAGE_PATH)
                                                                     ?
                                                                     (
                                                                         <MenuItem primaryText="ViewTasks"
@@ -469,7 +469,7 @@ class NavigationBarLayout extends Component {
                                                                     )
                                                                 }
 
-                                                                {(this.state.currentPage === "CreateTask")
+                                                                {(this.props.location.pathname === CREATE_TASK_PAGE_PATH)
                                                                     ?
                                                                     (
                                                                         <MenuItem primaryText="Create task"
@@ -482,7 +482,7 @@ class NavigationBarLayout extends Component {
                                                                     )
                                                                 }
 
-                                                                {(this.state.currentPage === "Reports")
+                                                                {(this.props.location.pathname === REPORTS_PAGE_PATH)
                                                                     ?
                                                                     (
                                                                         <MenuItem primaryText="Reports"
@@ -501,7 +501,7 @@ class NavigationBarLayout extends Component {
                                                 (
                                                     <Menu style={{backgroundColor: '#FFFBF7', width: '100%'}}>
 
-                                                        {(this.state.currentPage === "MyInformation")
+                                                        {(this.props.location.pathname === EMPTY_PAGE_PATH)
                                                             ?
                                                             (
                                                                 <MenuItem primaryText="Main Page"
@@ -530,7 +530,8 @@ class NavigationBarLayout extends Component {
 
 function mapStateToProps(state) {
     return {
-        auth: state.auth
+        auth: state.auth,
+        location:state.location
     };
 }
 

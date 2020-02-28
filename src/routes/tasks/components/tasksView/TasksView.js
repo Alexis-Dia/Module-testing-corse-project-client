@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import './TasksView.scss'
 import MuiThemeProvider from "@material-ui/core/es/styles/MuiThemeProvider";
 import {ADD_FLASH_MESSAGE} from "../../../../api/flash/flashActions";
-import {GET_TASKS} from "../../../../api/task/taskActions";
+import {GET_MINE_TASK, GET_TASKS} from "../../../../api/task/taskActions";
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -29,6 +29,7 @@ class TasksView extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      auth: null,
       tasks: [],
     }
   }
@@ -50,13 +51,44 @@ class TasksView extends Component {
   }
 
   componentDidMount() {
-    this.props.getTasks({
-      data: {},
-      credentials: {emailAddress: this.props.auth.user.emailAddress, password: this.props.auth.user.password}
-    });
+    console.log("ADSASD PROPS", this.props.auth)
+    if (this.props.auth.user.userRole === 'USER') {
+      console.log("ADSASD USER")
+      this.props.getMineTasks({
+        data: {},
+        credentials: {emailAddress: this.props.auth.user.emailAddress, password: this.props.auth.user.password}
+      });
+    } else if(this.props.auth.user.userRole === 'ADMIN') {
+      console.log("ADSASD ADMIN")
+      this.props.getTasks({
+        data: {},
+        credentials: {emailAddress: this.props.auth.user.emailAddress, password: this.props.auth.user.password}
+      });
+    }
   }
 
   componentWillReceiveProps(nextprops) {
+    console.log("IIIIIIII nextprops", nextprops.auth)
+    if (nextprops.auth !== this.props.auth) {
+      console.log("IIIIIIII2 nextprops", nextprops.auth)
+      if (nextprops.auth.isAuthenticated) {
+        console.log("IIIIIIII3 nextprops", nextprops.auth)
+        if (nextprops.auth.user.userRole === 'USER') {
+          console.log("IIIIIIII4 nextprops", nextprops.auth)
+          this.props.getMineTasks({
+            data: {},
+            credentials: {emailAddress: nextprops.auth.user.emailAddress, password: nextprops.auth.user.password}
+          });
+        } else if(nextprops.auth.user.userRole === 'ADMIN') {
+          console.log("IIIIIIII5 nextprops", nextprops.auth)
+          this.props.getTasks({
+            data: {},
+            credentials: {emailAddress: nextprops.auth.user.emailAddress, password: nextprops.auth.user.password}
+          });
+        }
+      }
+      this.setState({auth: nextprops.auth});
+    }
     if (nextprops.task && nextprops.task !== this.props.task) {
       this.setState({tasks: nextprops.task});
     }
@@ -130,6 +162,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getTasks: (data) => dispatch({type: GET_TASKS, data}),
+    getMineTasks: (data) => dispatch({type: GET_MINE_TASK, data}),
     showFlashMessage: (data) => dispatch({type: ADD_FLASH_MESSAGE, data})
   }
 };
