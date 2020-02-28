@@ -19,6 +19,7 @@ import { EMPTY_PAGE_PATH } from '../../../../properties/properties';
 import {GET_REPORTS} from "../../../../api/report/reportActions";
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
+import TableContainer from '@material-ui/core/TableContainer';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
@@ -114,37 +115,35 @@ class ReportsView extends Component {
           <MuiThemeProvider>
             {auth.isAuthenticated ?
                 (
-                    <Paper className={classes.root} style={{height: '700px'}}>
-                      <Table style= {{overflowX: undefined, overflowY: undefined }}>
-                        <TableHead>
-                          <TableRow>
-                            <TableCell onClick={() => {console.log("this.state = ", this.state)}}>Id</TableCell>
-                            <TableCell numeric>Brand</TableCell>
-                            <TableCell numeric>Capacity</TableCell>
-                            <TableCell numeric>Year</TableCell>
-                            <TableCell numeric>Number</TableCell>
-                            <TableCell numeric>Data of receipt</TableCell>
-                            <TableCell numeric>Status</TableCell>
-                          </TableRow>
-                        </TableHead>
-                        <TableBody style= {{overflowX: undefined, overflowY: undefined }}>
-                          {this.state.reports && this.state.reports.map(report => {
-                            return (
-                                <TableRow key={report.id}>
-                                  <TableCell component="th" scope="row">
-                                    {report.id}
-                                  </TableCell>
-                                  <TableCell numeric>{report.brand}</TableCell>
-                                  <TableCell numeric>{report.afds}</TableCell>
-                                  <TableCell numeric>{report.year}</TableCell>
-                                  <TableCell numeric>{report.number}</TableCell>
-                                  <TableCell numeric>{report.dateOfReceipt}</TableCell>
-                                  <TableCell numeric>{report.carStatus}</TableCell>
-                                </TableRow>
-                            );
-                          })}
-                        </TableBody>
-                      </Table>
+                    <Paper className={classes.root}>
+                      <TableContainer className={classes.container} style={{maxHeight: '640px'}}>
+                        <Table stickyHeader aria-label="sticky table">
+                          <TableHead>
+                            <TableRow>
+                              <TableCell>Id</TableCell>
+                              <TableCell numeric>Departure</TableCell>
+                              <TableCell numeric>Weight</TableCell>
+                              <TableCell numeric>Distance</TableCell>
+                              <TableCell numeric>Arrival</TableCell>
+                            </TableRow>
+                          </TableHead>
+                          <TableBody>
+                            {this.state.reports && this.state.reports.map(report => {
+                              return (
+                                  <TableRow key={report.id}>
+                                    <TableCell component="th" scope="row">
+                                      {report.id}
+                                    </TableCell>
+                                    <TableCell numeric>{report.departure}</TableCell>
+                                    <TableCell numeric>{report.weight}</TableCell>
+                                    <TableCell numeric>{report.distance}</TableCell>
+                                    <TableCell numeric>{report.arrival}</TableCell>
+                                  </TableRow>
+                              );
+                            })}
+                          </TableBody>
+                        </Table>
+                      </TableContainer>
                     </Paper>
                 )
                 :
