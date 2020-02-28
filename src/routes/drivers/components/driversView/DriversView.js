@@ -69,7 +69,7 @@ class DriversView extends Component {
     console.log("this.props = ", this.props)
 
     return (
-      <div style={{height: '650px', marginLeft: '200px', marginTop: '50px'}}>
+      <div style={{height: '650px', marginLeft: '200px', marginTop: '75px'}}>
         <MuiThemeProvider>
           {auth.isAuthenticated ?
               (

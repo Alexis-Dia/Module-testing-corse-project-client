@@ -57,9 +57,7 @@ class CarsView extends Component {
   }
 
   componentWillReceiveProps(nextprops) {
-    console.log("nextprops.car1 = ", nextprops.car)
     if (nextprops.car && nextprops.car !== this.props.car) {
-      console.log("nextprops.car2 = ", nextprops.car)
       this.setState({cars: nextprops.car});
     }
   }
@@ -69,7 +67,7 @@ class CarsView extends Component {
     console.log("this.props = ", this.props)
 
     return (
-      <div style={{height: '650px', marginLeft: '200px', marginTop: '50px'}}>
+      <div style={{height: '650px', marginLeft: '200px', marginTop: '75px'}}>
         <MuiThemeProvider>
           {auth.isAuthenticated ?
               (
