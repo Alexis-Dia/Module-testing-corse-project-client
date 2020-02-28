@@ -363,12 +363,12 @@ class NavigationBarLayout extends Component {
                                                                 {(this.props.location.pathname === VIEW_TASKS_PAGE_PATH)
                                                                     ?
                                                                     (
-                                                                        <MenuItem primaryText="Tasks"
+                                                                        <MenuItem primaryText="All tasks"
                                                                                   onClick={this.onClickAllTasks}
                                                                                   style={{backgroundColor: '#FF8F4F'}}/>
                                                                     ) :
                                                                     (
-                                                                        <MenuItem primaryText="Tasks"
+                                                                        <MenuItem primaryText="All tasks"
                                                                                   onClick={this.onClickAllTasks}/>
                                                                     )
                                                                 }
