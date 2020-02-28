@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import './AskQuestionView.scss'
+import './ReportsView.scss'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextFieldGroup from './textFieldGroup/TextFieldGroup';
 import {
@@ -22,7 +22,7 @@ import FlatButton from 'material-ui/FlatButton';
 import Reply from 'material-ui/svg-icons/content/reply'
 import { EMPTY_PAGE_PATH } from '../../../../properties/properties';
 
-class AskQuestionView extends Component {
+class ReportsView extends Component {
 
   constructor(props) {
     super(props);
@@ -147,4 +147,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AskQuestionView);
+)(ReportsView);

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import './GridView.scss'
+import './InformationView.scss'
 import MuiThemeProvider from "@material-ui/core/es/styles/MuiThemeProvider";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -18,7 +18,7 @@ const styles = theme => ({
   },
 });
 
-class GridView extends Component {
+class InformationView extends Component {
 
   constructor(props) {
     super(props);
@@ -137,4 +137,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(styles)(GridView));
+)(withStyles(styles)(InformationView));

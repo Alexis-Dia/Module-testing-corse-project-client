@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import GridView from './gridView/GridView'
+import GridView from './myInformationView/InformationView'
 import FooterView from './footerView/FooterView'
 import './MainView.scss'
 

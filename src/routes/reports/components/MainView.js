@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import AskQuestionView from './AskQuestionView/AskQuestionView'
+import ReportsView from './reportsView/ReportsView'
 import FooterView from '../../Home/components/FooterView/FooterView'
 import './MainView.scss'
 
@@ -9,7 +9,7 @@ export default class MainView extends Component {
     return (
       <div>
         <div className='main-header'>
-          <AskQuestionView />
+          <ReportsView />
           <FooterView />
         </div>
       </div>
