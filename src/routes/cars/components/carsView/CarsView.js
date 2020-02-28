@@ -1,10 +1,16 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {GET_CARS} from "../../../../api/car/carActions";
 import './CarsView.scss'
 import MuiThemeProvider from "@material-ui/core/es/styles/MuiThemeProvider";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
+import {ADD_FLASH_MESSAGE} from "../../../../api/flash/flashActions";
 import { withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 
 const styles = theme => ({
   root: {
@@ -23,7 +29,7 @@ class CarsView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      cars: [],
     }
   }
 
@@ -44,9 +50,18 @@ class CarsView extends Component {
   }
 
   componentDidMount() {
+    this.props.getCars({
+      data: {},
+      credentials: {emailAddress: this.props.auth.user.emailAddress, password: this.props.auth.user.password}
+    });
   }
 
   componentWillReceiveProps(nextprops) {
+    console.log("nextprops.car1 = ", nextprops.car)
+    if (nextprops.car && nextprops.car !== this.props.car) {
+      console.log("nextprops.car2 = ", nextprops.car)
+      this.setState({cars: nextprops.car});
+    }
   }
 
   render = () => {
@@ -54,11 +69,42 @@ class CarsView extends Component {
     console.log("this.props = ", this.props)
 
     return (
-      <div style={{height: '650px', marginLeft: '200px'}}>
+      <div style={{height: '650px', marginLeft: '200px', marginTop: '50px'}}>
         <MuiThemeProvider>
           {auth.isAuthenticated ?
               (
-                  <div>Empty</div>
+                  <Paper className={classes.root}>
+                    <Table className={classes.table}>
+                      <TableHead>
+                        <TableRow>
+                          <TableCell onClick={() => {console.log("this.state = ", this.state)}}>Id</TableCell>
+                          <TableCell numeric>Brand</TableCell>
+                          <TableCell numeric>Capacity</TableCell>
+                          <TableCell numeric>Year</TableCell>
+                          <TableCell numeric>Number</TableCell>
+                          <TableCell numeric>Data of receipt</TableCell>
+                          <TableCell numeric>Status</TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {this.state.cars && this.state.cars.map(car => {
+                          return (
+                              <TableRow key={car.id}>
+                                <TableCell component="th" scope="row">
+                                  {car.id}
+                                </TableCell>
+                                <TableCell numeric>{car.brand.brand + ' ' + car.brand.model}</TableCell>
+                                <TableCell numeric>{car.brand.carryingCapacity}</TableCell>
+                                <TableCell numeric>{car.year}</TableCell>
+                                <TableCell numeric>{car.number}</TableCell>
+                                <TableCell numeric>{car.dateOfReceipt}</TableCell>
+                                <TableCell numeric>{car.carStatus}</TableCell>
+                              </TableRow>
+                          );
+                        })}
+                      </TableBody>
+                    </Table>
+                  </Paper>
               )
                   :
               (
@@ -75,11 +121,14 @@ class CarsView extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     auth: state.auth || {},
+    car: state.car.list || [],
   }
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    getCars: (data) => dispatch({type: GET_CARS, data}),
+    showFlashMessage: (data) => dispatch({type: ADD_FLASH_MESSAGE, data})
   }
 };
 

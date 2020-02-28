@@ -10,14 +10,16 @@ const carReducer = (state = initialState, action = {}) => {
   switch (action.type) {
 
     case GET_CARS + FAILURE:
-      return {
-        list: []
+      return  {
+        ...state,
+        list: action.response.result
       };
 
     case GET_CARS + SUCCESS:
 
-      return {
-        list: []
+      return  {
+        ...state,
+        list: action.response.result
       };
 
     default:

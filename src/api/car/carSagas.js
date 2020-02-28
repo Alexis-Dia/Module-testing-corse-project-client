@@ -3,7 +3,6 @@ import { fetchCars } from "./carApi";
 import { SUCCESS, FAILURE, UNAUTHORIZED, GET_CARS} from './carActions'
 
 export function fetchCarsApi (data) {
-    console.log("1")
     return fetchCars(data)
         .then(data => {
             return { response: data }
@@ -15,8 +14,6 @@ export function fetchCarsApi (data) {
 
 export function * tryFetchCars (data) {
         const { response, error } = yield call(fetchCarsApi, data);
-    console.log("2.1 status = ", response)
-    console.log("2.2 status = ", error)
         if (response.httpStatus === 401) {
             yield put({type: GET_CARS + UNAUTHORIZED, response})
         } else if (response.httpStatus === 200) {

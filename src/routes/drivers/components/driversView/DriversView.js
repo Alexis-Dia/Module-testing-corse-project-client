@@ -54,7 +54,6 @@ class DriversView extends Component {
       data: {},
       credentials: {emailAddress: this.props.auth.user.emailAddress, password: this.props.auth.user.password}
     });
-    console.log("getDrivers = ")
   }
 
   componentWillReceiveProps(nextprops) {
