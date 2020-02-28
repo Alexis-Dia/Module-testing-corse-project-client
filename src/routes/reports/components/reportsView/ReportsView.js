@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import './ReportsView.scss'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import TextFieldGroup from './textFieldGroup/TextFieldGroup';
 import {
   TIME_OF_ASKING_QUESTION_POP_UP,
   TIME_OF_WAITING_AFTER_ASKING,
@@ -11,35 +10,43 @@ import {
   EMPTY_STRING, REGISTARATION_PAGE_PATH
 } from '../../../../properties/properties'
 import {WARNING_QUESTION_LESS_THEN} from '../../../../properties/warningMessages'
-import {Label} from 'reactstrap';
 import {
   ADD_FLASH_MESSAGE,
-  DELETE_BY_VALUE_FLASH_MESSAGES,
   MESSAGE_YOU_ASKED_QUESTION_IN_SUCCESSFULY,
 } from "../../../../api/flash/flashActions";
 import {browserHistory} from "react-router";
-import FlatButton from 'material-ui/FlatButton';
-import Reply from 'material-ui/svg-icons/content/reply'
 import { EMPTY_PAGE_PATH } from '../../../../properties/properties';
+import {GET_REPORTS} from "../../../../api/report/reportActions";
+import { withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: 20,
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    margin: '10px',
+  },
+});
 
 class ReportsView extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true,
-      flashMessages: null,
-      auth: {isAuthenticated: false},
-      headValue: EMPTY_STRING,
-      headValueErrMeassage: EMPTY_STRING,
+      reports: [],
     }
   }
 
   componentWillMount() {
-  }
-
-  componentDidMount() {
-    this.setState({auth: this.props.auth})
   }
 
   componentWillUnmount() {
@@ -54,13 +61,17 @@ class ReportsView extends Component {
 
   }
 
-  componentDidUpdate() {
-
+  componentDidMount() {
+    this.props.getReports({
+      data: {},
+      credentials: {emailAddress: this.props.auth.user.emailAddress, password: this.props.auth.user.password}
+    });
   }
 
   componentWillReceiveProps(nextprops) {
-    if (nextprops.auth !== this.props.auth) {
-      this.setState({auth: nextprops.auth})
+    console.log("nextprops.report = ", nextprops.report)
+    if (nextprops.report && nextprops.report !== this.props.report) {
+      this.setState({reports: nextprops.report});
     }
   }
 
@@ -96,36 +107,54 @@ class ReportsView extends Component {
   };
 
   render = () => {
+    const {classes, auth} = this.props;
 
     return (
-      <div style={{height: '650px'}}>
-        <MuiThemeProvider>
-          <FlatButton
+        <div style={{height: '650px', marginLeft: '200px', marginTop: '75px'}}>
+          <MuiThemeProvider>
+            {auth.isAuthenticated ?
+                (
+                    <Paper className={classes.root} style={{height: '700px'}}>
+                      <Table style= {{overflowX: undefined, overflowY: undefined }}>
+                        <TableHead>
+                          <TableRow>
+                            <TableCell onClick={() => {console.log("this.state = ", this.state)}}>Id</TableCell>
+                            <TableCell numeric>Brand</TableCell>
+                            <TableCell numeric>Capacity</TableCell>
+                            <TableCell numeric>Year</TableCell>
+                            <TableCell numeric>Number</TableCell>
+                            <TableCell numeric>Data of receipt</TableCell>
+                            <TableCell numeric>Status</TableCell>
+                          </TableRow>
+                        </TableHead>
+                        <TableBody style= {{overflowX: undefined, overflowY: undefined }}>
+                          {this.state.reports && this.state.reports.map(report => {
+                            return (
+                                <TableRow key={report.id}>
+                                  <TableCell component="th" scope="row">
+                                    {report.id}
+                                  </TableCell>
+                                  <TableCell numeric>{report.brand}</TableCell>
+                                  <TableCell numeric>{report.afds}</TableCell>
+                                  <TableCell numeric>{report.year}</TableCell>
+                                  <TableCell numeric>{report.number}</TableCell>
+                                  <TableCell numeric>{report.dateOfReceipt}</TableCell>
+                                  <TableCell numeric>{report.carStatus}</TableCell>
+                                </TableRow>
+                            );
+                          })}
+                        </TableBody>
+                      </Table>
+                    </Paper>
+                )
+                :
+                (
+                    <div></div>
+                )
+            }
 
-            backgroundColor="#a4c639"
-            hoverColor="#8AA62F"
-            icon={<Reply color={'#ffffff'} style={{marginBottom: '10px'}}/>}
-            style={{marginLeft: '1%', marginTop: '3%', maxWidth: '60px', maxHeight: '25px', minWidth: '60px', minHeight: '25px'}}
-            onClick={this.returnToMainPage}
-          />
-          <div className='ask-form'>
-            <form onSubmit={this.onSubmit}>
-              <Label for="exampleEmail"><h4>Ask your quastion...</h4></Label>
-              <TextFieldGroup
-                field="identifier"
-                value={this.state.headValue}
-                onChange={this.onChange}
-                frontendError={this.state.headValueErrMeassage}
-              />
-              <div className='button1'>
-                <button disabled={!this.state.auth.isAuthenticated} className="btn btn-primary btn-sm">Ask your
-                  quastion
-                </button>
-              </div>
-            </form>
-          </div>
-        </MuiThemeProvider>
-      </div>
+          </MuiThemeProvider>
+        </div>
     )
   }
 }
@@ -133,18 +162,19 @@ class ReportsView extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     auth: state.auth || {},
-    flashMessages: state.flashMessages || {}
+    flashMessages: state.flashMessages || {},
+    report: state.report.list || [],
   }
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    showFlashMessage: (data) => dispatch({type: ADD_FLASH_MESSAGE, data}),
-    deleteByValueFlashMessages: (data) => dispatch({type: DELETE_BY_VALUE_FLASH_MESSAGES, data}),
+    getReports: (data) => dispatch({type: GET_REPORTS, data}),
+    showFlashMessage: (data) => dispatch({type: ADD_FLASH_MESSAGE, data})
   }
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ReportsView);
+)(withStyles(styles)(ReportsView));

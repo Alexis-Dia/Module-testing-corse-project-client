@@ -10,14 +10,16 @@ const reportReducer = (state = initialState, action = {}) => {
   switch (action.type) {
 
     case GET_REPORTS + FAILURE:
-      return {
-        list: []
+      return  {
+        ...state,
+        list: action.response.result
       };
 
     case GET_REPORTS + SUCCESS:
 
-      return {
-        list: []
+      return  {
+        ...state,
+        list: action.response.result
       };
 
     default:

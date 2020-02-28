@@ -10,14 +10,17 @@ const taskReducer = (state = initialState, action = {}) => {
   switch (action.type) {
 
     case GET_TASKS + FAILURE:
-      return {
-        list: []
+
+      return  {
+        ...state,
+        list: action.response.result
       };
 
     case GET_TASKS + SUCCESS:
 
-      return {
-        list: []
+      return  {
+        ...state,
+        list: action.response.result
       };
 
     default:

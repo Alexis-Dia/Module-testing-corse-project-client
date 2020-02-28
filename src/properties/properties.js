@@ -12,6 +12,8 @@ export const PORT = 8080
 export const PATH_METHOD_AUTH_AUTHENTICATE = '/auth/authenticate';
 export const PATH_METHOD_GET_ALL_DRIVERS = '/user/allDrivers';
 export const PATH_METHOD_GET_ALL_CARS = '/car/all';
+export const PATH_METHOD_GET_ALL_TASKS = '/task/all';
+export const PATH_METHOD_GET_ALL_REPORTS = '/report/all';
 
 export const HTTPS = 'HTTPS://';
 export const HTTP = 'HTTP://';
