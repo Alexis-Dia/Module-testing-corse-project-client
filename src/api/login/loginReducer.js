@@ -35,7 +35,7 @@ const loginReducer = (state = initialState, action = {}) => {
     case GET_DRIVERS + SUCCESS:
       return  {
         ...state,
-        list: {...action.response.result}
+        list: action.response.result
       };
 
     case DELETE_CURRENT_USER:

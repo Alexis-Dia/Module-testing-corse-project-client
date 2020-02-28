@@ -2,11 +2,15 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import './DriversView.scss'
 import MuiThemeProvider from "@material-ui/core/es/styles/MuiThemeProvider";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import { withStyles } from '@material-ui/core/styles';
 import {GET_DRIVERS, LOGIN} from "../../../../api/login/loginActions";
 import {ADD_FLASH_MESSAGE} from "../../../../api/flash/flashActions";
+import { withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 
 const styles = theme => ({
   root: {
@@ -25,7 +29,7 @@ class DriversView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      drivers: [],
     }
   }
 
@@ -54,6 +58,11 @@ class DriversView extends Component {
   }
 
   componentWillReceiveProps(nextprops) {
+    if (nextprops.auth && nextprops.auth.list && nextprops.auth.list !== this.props.auth.list) {
+      console.log(" nextprops.auth. = ", nextprops.auth)
+      console.log(" nextprops.auth.list = ", nextprops.auth.list)
+      this.setState({drivers: nextprops.auth.list});
+    }
   }
 
   render = () => {
@@ -61,11 +70,42 @@ class DriversView extends Component {
     console.log("this.props = ", this.props)
 
     return (
-      <div style={{height: '650px', marginLeft: '200px'}}>
+      <div style={{height: '650px', marginLeft: '200px', marginTop: '50px'}}>
         <MuiThemeProvider>
           {auth.isAuthenticated ?
               (
-                  <div>Empty</div>
+                  <Paper className={classes.root}>
+                    <Table className={classes.table}>
+                      <TableHead>
+                        <TableRow>
+                          <TableCell>Id</TableCell>
+                          <TableCell numeric>Name</TableCell>
+                          <TableCell numeric>Birthday</TableCell>
+                          <TableCell numeric>Email</TableCell>
+                          <TableCell numeric>Money</TableCell>
+                          <TableCell numeric>Role</TableCell>
+                          <TableCell numeric>Status</TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {this.state.drivers && this.state.drivers.map(driver => {
+                          return (
+                              <TableRow key={driver.userID}>
+                                <TableCell component="th" scope="row">
+                                  {driver.userID}
+                                </TableCell>
+                                <TableCell numeric>{driver.lastName + ' ' + driver.firstName + ' ' + driver.patronomic}</TableCell>
+                                <TableCell numeric>{driver.birthday}</TableCell>
+                                <TableCell numeric>{driver.emailAddress}</TableCell>
+                                <TableCell numeric>{driver.money}</TableCell>
+                                <TableCell numeric>{driver.userRole}</TableCell>
+                                <TableCell numeric>{driver.userStatus}</TableCell>
+                              </TableRow>
+                          );
+                        })}
+                      </TableBody>
+                    </Table>
+                  </Paper>
               )
                   :
               (
@@ -82,7 +122,7 @@ class DriversView extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     auth: state.auth || {},
-    drivers: state.auth.drivers || [],
+    drivers: state.auth.list || [],
   }
 };
 

@@ -54,13 +54,13 @@ class InformationView extends Component {
     console.log("this.props = ", this.props)
 
     return (
-      <div style={{height: '650px', marginLeft: '200px'}}>
+      <div style={{height: '650px', marginLeft: '200px', marginTop: '50px'}}>
         <MuiThemeProvider>
           {auth.isAuthenticated ?
               (
                   <Grid container spacing={0}>
                     <Grid item xs={12}>
-                      <Paper className={classes.paper}>{auth.user.lastName + ' ' + auth.user.firstName + ' ' + auth.user.patronymic}</Paper>
+                      <Paper className={classes.paper}>{auth.user.lastName + ' ' + auth.user.firstName}</Paper>
                     </Grid>
 
                     <Grid item xs={12} sm={3}>
