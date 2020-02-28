@@ -399,16 +399,6 @@ class NavigationBarLayout extends Component {
                                                                     )
                                                                 }
 
-                                                                {/*{(this.state.currentPage === "Find question")
-                              ?
-                              (
-                                <MenuItem primaryText="Find question" onClick={this.onClickFindQuestion} style={{backgroundColor: '#FF8F4F'}}/>
-                              ) :
-                              (
-                                <MenuItem primaryText="Find question" onClick={this.onClickFindQuestion} />
-                              )
-                            }*/}
-
                                                             </Menu>
                                                         ) :
                                                         (
@@ -504,17 +494,6 @@ class NavigationBarLayout extends Component {
                                                                                   onClick={this.onClickViewAllReports}/>
                                                                     )
                                                                 }
-
-                                                                {/*{(this.state.currentPage === "Find question")
-                              ?
-                              (
-                                <MenuItem primaryText="Find question" onClick={this.onClickFindQuestion} style={{backgroundColor: '#FF8F4F'}}/>
-                              ) :
-                              (
-                                <MenuItem primaryText="Find question" onClick={this.onClickFindQuestion} />
-                              )
-                            }*/}
-
                                                             </Menu>
                                                         )
                                                 )
@@ -525,26 +504,15 @@ class NavigationBarLayout extends Component {
                                                         {(this.state.currentPage === "MyInformation")
                                                             ?
                                                             (
-                                                                <MenuItem primaryText="Information"
+                                                                <MenuItem primaryText="Main Page"
                                                                           onClick={this.onClickMyInformation}
                                                                           style={{backgroundColor: '#FF8F4F'}}/>
                                                             ) :
                                                             (
-                                                                <MenuItem primaryText="Information"
+                                                                <MenuItem primaryText="Main Page"
                                                                           onClick={this.onClickMyInformation}/>
                                                             )
                                                         }
-
-                                                        {/*{(this.state.currentPage === "Find question")
-                              ?
-                              (
-                                <MenuItem primaryText="Find question" onClick={this.onClickFindQuestion} style={{backgroundColor: '#FF8F4F'}}/>
-                              ) :
-                              (
-                                <MenuItem primaryText="Find question" onClick={this.onClickFindQuestion} />
-                              )
-                            }*/}
-
                                                     </Menu>
                                                 )
                                             }

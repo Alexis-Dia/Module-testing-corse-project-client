@@ -1,6 +1,22 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import './GridView.scss'
+import MuiThemeProvider from "@material-ui/core/es/styles/MuiThemeProvider";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: 20,
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    margin: '10px',
+  },
+});
 
 class GridView extends Component {
 
@@ -34,10 +50,74 @@ class GridView extends Component {
   }
 
   render = () => {
+    const {classes, auth} = this.props;
+    console.log("this.props = ", this.props)
 
     return (
-      <div style={{height: '600px'}}>
+      <div style={{height: '650px', marginLeft: '200px'}}>
+        <MuiThemeProvider>
+          {auth.isAuthenticated ?
+              (
+                  <Grid container spacing={0}>
+                    <Grid item xs={12}>
+                      <Paper className={classes.paper}>{auth.user.lastName + ' ' + auth.user.firstName + ' ' + auth.user.patronymic}</Paper>
+                    </Grid>
 
+                    <Grid item xs={12} sm={3}>
+                      <Paper className={classes.paper}>ID</Paper>
+                    </Grid>
+                    <Grid item xs={12} sm={9}>
+                      <Paper className={classes.paper}>{auth.user.userID}</Paper>
+                    </Grid>
+
+                    <Grid item xs={12} sm={3}>
+                      <Paper className={classes.paper}>Birthday</Paper>
+                    </Grid>
+                    <Grid item xs={12} sm={9}>
+                      <Paper className={classes.paper}>{auth.user.birthday}</Paper>
+                    </Grid>
+
+                    <Grid item xs={12} sm={3}>
+                      <Paper className={classes.paper}>Email</Paper>
+                    </Grid>
+                    <Grid item xs={12} sm={9}>
+                      <Paper className={classes.paper}>{auth.user.emailAddress}</Paper>
+                    </Grid>
+
+                    <Grid item xs={12} sm={3}>
+                      <Paper className={classes.paper}>Money</Paper>
+                    </Grid>
+                    <Grid item xs={12} sm={9}>
+                      <Paper className={classes.paper}>{auth.user.money}</Paper>
+                    </Grid>
+
+                    <Grid item xs={12} sm={3}>
+                      <Paper className={classes.paper}>Role</Paper>
+                    </Grid>
+                    <Grid item xs={12} sm={9}>
+                      <Paper className={classes.paper}>{auth.user.userRole}</Paper>
+                    </Grid>
+
+                    {auth.user.userRole === 'USER' && (
+                        <React.Fragment>
+                          <Grid item xs={12} sm={3}>
+                            <Paper className={classes.paper}>Status</Paper>
+                          </Grid>
+                          <Grid item xs={12} sm={9}>
+                            <Paper className={classes.paper}>{auth.user.userStatus}</Paper>
+                          </Grid>
+                        </React.Fragment>
+                      )
+                    }
+                  </Grid>
+              )
+                  :
+              (
+                  <div></div>
+              )
+          }
+
+        </MuiThemeProvider>
       </div>
     )
   }
@@ -57,4 +137,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(GridView);
+)(withStyles(styles)(GridView));

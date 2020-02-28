@@ -98,7 +98,7 @@ class AskQuestionView extends Component {
   render = () => {
 
     return (
-      <div style={{height: '600px'}}>
+      <div style={{height: '650px'}}>
         <MuiThemeProvider>
           <FlatButton
 
