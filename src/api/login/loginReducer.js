@@ -1,9 +1,10 @@
-import { DELETE_CURRENT_USER, SUCCESS, FAILURE, LOGIN } from './loginActions'
+import { DELETE_CURRENT_USER, SUCCESS, FAILURE, LOGIN, GET_DRIVERS } from './loginActions'
 import { LOGIN_INVALID_CREDENTIALS } from './loginProperties'
 
 const initialState = {
     isAuthenticated: false,
-    user: {}
+    user: {},
+    list: []
 };
 
 const loginReducer = (state = initialState, action = {}) => {
@@ -21,6 +22,18 @@ const loginReducer = (state = initialState, action = {}) => {
       return {
         isAuthenticated: true,
         user: {...action.response.result}
+      };
+
+    case GET_DRIVERS + FAILURE:
+      return  {
+        ...state,
+        list: []
+      };
+
+    case GET_DRIVERS + SUCCESS:
+      return  {
+        ...state,
+        list: {...action.response.result}
       };
 
     case DELETE_CURRENT_USER:
