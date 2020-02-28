@@ -41,7 +41,7 @@ export function apiCall (hostname, port, method, body) {
         })
 }
 
-export function apiCallForLoggedUser (hostname, port, pathMethod, method, body = {data: {}}) {
+export function apiCallForBasicAuth (hostname, port, pathMethod, method, body = {data: {}}, credentials = {emailAddress: null, password: null}) {
 
     if (project.env !== 'development') {
         hostname = window.location.hostname
@@ -54,6 +54,10 @@ export function apiCallForLoggedUser (hostname, port, pathMethod, method, body =
         url: url,
         headers: {
             'Authorization': BEARER + localStorage.jwtToken,
+        },
+        auth: {
+            username: credentials.emailAddress,
+            password: credentials.password
         },
         responseType: JSON
     };

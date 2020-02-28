@@ -1,5 +1,5 @@
-import {apiCall, apiCallForLoggedUser} from "../../services/api/axiosApi";
-import {GET, HOSTNAME, PORT} from "../../properties/properties";
+import {apiCall, apiCallForBasicAuth} from "../../services/api/axiosApi";
+import {GET, HOSTNAME, PATH_METHOD_GET_ALL_DRIVERS, PORT} from "../../properties/properties";
 
 export function fetchAuth (ob) {
   console.log("1.1")
@@ -7,7 +7,6 @@ export function fetchAuth (ob) {
 }
 
 export function fetchDrivers(ob) {
-  console.log("1.2")
-  return  apiCallForLoggedUser(HOSTNAME, PORT, GET, ob)
+  return  apiCallForBasicAuth(HOSTNAME, PORT, PATH_METHOD_GET_ALL_DRIVERS, GET, ob.data.data, ob.data.credentials)
 }
 

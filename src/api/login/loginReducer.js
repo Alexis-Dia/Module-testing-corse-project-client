@@ -13,6 +13,7 @@ const loginReducer = (state = initialState, action = {}) => {
 
     case LOGIN + FAILURE:
       return {
+        ...state,
         isAuthenticated: false,
         user: {errors: LOGIN_INVALID_CREDENTIALS}
       };
@@ -20,6 +21,7 @@ const loginReducer = (state = initialState, action = {}) => {
     case LOGIN + SUCCESS:
 
       return {
+        ...state,
         isAuthenticated: true,
         user: {...action.response.result}
       };
@@ -39,6 +41,7 @@ const loginReducer = (state = initialState, action = {}) => {
     case DELETE_CURRENT_USER:
 
       return {
+        ...state,
         isAuthenticated: false,
         user: {}
       };

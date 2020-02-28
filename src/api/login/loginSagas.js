@@ -1,4 +1,4 @@
-import { fetchAuth } from './loginApi'
+import { fetchAuth, fetchDrivers } from './loginApi'
 import { takeEvery, call, put } from 'redux-saga/effects'
 import {SUCCESS, FAILURE, UNAUTHORIZED, LOGIN, GET_DRIVERS} from './loginActions'
 
@@ -46,6 +46,7 @@ export function fetchDriversApi (data) {
 }
 
 export function * tryFetchDrivers (data) {
+    console.log("data = ", data)
     const { response, error } = yield call(fetchDriversApi, data);
     console.log("2.1 status = ", response)
     console.log("2.2 status = ", error)

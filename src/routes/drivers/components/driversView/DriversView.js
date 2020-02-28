@@ -5,6 +5,8 @@ import MuiThemeProvider from "@material-ui/core/es/styles/MuiThemeProvider";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import { withStyles } from '@material-ui/core/styles';
+import {GET_DRIVERS, LOGIN} from "../../../../api/login/loginActions";
+import {ADD_FLASH_MESSAGE} from "../../../../api/flash/flashActions";
 
 const styles = theme => ({
   root: {
@@ -44,6 +46,11 @@ class DriversView extends Component {
   }
 
   componentDidMount() {
+    this.props.getDrivers({
+      data: {},
+      credentials: {emailAddress: this.props.auth.user.emailAddress, password: this.props.auth.user.password}
+    });
+    console.log("getDrivers = ")
   }
 
   componentWillReceiveProps(nextprops) {
@@ -75,11 +82,14 @@ class DriversView extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     auth: state.auth || {},
+    drivers: state.auth.drivers || [],
   }
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    getDrivers: (data) => dispatch({type: GET_DRIVERS, data}),
+    showFlashMessage: (data) => dispatch({type: ADD_FLASH_MESSAGE, data})
   }
 };
 

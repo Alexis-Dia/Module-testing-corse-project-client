@@ -8,21 +8,10 @@ export const PUT = 'PUT';
 export const HOSTNAME = 'localhost'
 //export const PORT = 8881;
 export const PORT = 8080
-export const PATH_METHOD_AUTHENTICATE = '/authenticate';
-export const PATH_METHOD_ALARM_LOAD = '/alarm/load';
-export const PATH_METHOD_POST_LOAD = '/post/load';
-export const PATH_METHOD_POST_NEW = '/post/new';
-export const PATH_METHOD_DEVICE_ADD = '/device/new';
-export const PATH_METHOD_DEVICE_MODIFY = '/device/modify';
-export const PATH_METHOD_DEVICE_LOAD = '/device/load/';
-export const PATH_METHOD_DEVICE_LOAD_ALL = '/device/load/all';
-export const PATH_METHOD_DEVICE_EVENTS_LOAD = '/event/load/';
-export const PATH_METHOD_ALARM_TYPE_LOAD_ALL = '/alarm/type/load/all';
-export const PATH_METHOD_ALARM_RESOLVE = '/alarm/resolve';
-export const PATH_METHOD_LOAD_RESOLVED_ALARM = '/alarm/resolve/load/';
-export const PATH_METHOD_EVENT_LOAD_ALARM = '/event/load/alarm/';
-export const PATH_METHOD_PATIENT_LOAD = '/patient/load';
+
 export const PATH_METHOD_AUTH_AUTHENTICATE = '/auth/authenticate';
+export const PATH_METHOD_GET_ALL_DRIVERS = '/user/allDrivers';
+
 export const HTTPS = 'HTTPS://';
 export const HTTP = 'HTTP://';
 export const WS = '/ws';
