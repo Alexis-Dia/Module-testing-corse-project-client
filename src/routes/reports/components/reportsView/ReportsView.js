@@ -64,6 +64,7 @@ class ReportsView extends Component {
   }
 
   componentDidMount() {
+    console.log("componentDidMount 888")
     this.props.getReports({
       data: {},
       credentials: {emailAddress: this.props.auth.user.emailAddress, password: this.props.auth.user.password}
@@ -74,9 +75,13 @@ class ReportsView extends Component {
     if (nextprops.auth !== this.props.auth) {
       this.setState({auth: nextprops.auth});
       if (nextprops.auth.isAuthenticated) {
-        if (nextprops.auth.user.userRole === 'USER') {
-
-        }
+        console.log("componentDidMount 8881 = ", nextprops.auth.isAuthenticated)
+        console.log("componentDidMount 8881 = ", nextprops.auth.user.emailAddress)
+        console.log("componentDidMount 8882 = ", nextprops.auth.user.password)
+        this.props.getReports({
+          data: {},
+          credentials: {emailAddress: nextprops.auth.user.emailAddress, password: nextprops.auth.user.password}
+        });
       }
     }
     if (nextprops.report && nextprops.report !== this.props.report) {

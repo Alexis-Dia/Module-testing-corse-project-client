@@ -394,7 +394,8 @@ class NavigationBarLayout extends Component {
                                                                     )
                                                                 }
 
-                                                                {(this.props.location.pathname === REPORTS_PAGE_PATH)
+                                                                {/*From my point of view there is no necessary to show to user all reports*/}
+{/*                                                                {(this.props.location.pathname === REPORTS_PAGE_PATH)
                                                                     ?
                                                                     (
                                                                         <MenuItem primaryText="Reports"
@@ -405,7 +406,7 @@ class NavigationBarLayout extends Component {
                                                                         <MenuItem primaryText="Reports"
                                                                                   onClick={this.onClickViewAllReports}/>
                                                                     )
-                                                                }
+                                                                }*/}
 
                                                                 {(this.props.location.pathname === ADD_REPORT_PAGE_PATH)
                                                                     ?

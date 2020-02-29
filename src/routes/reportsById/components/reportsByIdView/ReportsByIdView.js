@@ -64,19 +64,26 @@ class ReportsByIdView extends Component {
   }
 
   componentDidMount() {
-    this.props.getReports({
-      data: {},
-      credentials: {emailAddress: this.props.auth.user.emailAddress, password: this.props.auth.user.password}
-    });
+    console.log("componentDidMount 887")
+    if (this.props.auth.isAuthenticated && this.props.taskId) {
+      this.props.getReportsByTaskId({
+        data: {taskId: this.props.taskId},
+        credentials: {emailAddress: this.props.auth.user.emailAddress, password: this.props.auth.user.password}
+      });
+    }
   }
 
   componentWillReceiveProps(nextprops) {
     if (nextprops.auth !== this.props.auth) {
       this.setState({auth: nextprops.auth});
       if (nextprops.auth.isAuthenticated) {
-        if (nextprops.auth.user.userRole === 'USER') {
-
-        }
+        console.log("componentDidMount 8881 = ", nextprops.auth.isAuthenticated)
+        console.log("componentDidMount 8881 = ", nextprops.auth.user.emailAddress)
+        console.log("componentDidMount 8882 = ", nextprops.auth.user.password)
+        this.props.getReportsByTaskId({
+          data: {taskId: this.props.taskId},
+          credentials: {emailAddress: nextprops.auth.user.emailAddress, password: nextprops.auth.user.password}
+        });
       }
     }
     if (nextprops.report && nextprops.report !== this.props.report) {

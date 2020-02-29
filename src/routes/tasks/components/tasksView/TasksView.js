@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {browserHistory} from "react-router";
 import {connect} from 'react-redux'
 import './TasksView.scss'
 import MuiThemeProvider from "@material-ui/core/es/styles/MuiThemeProvider";
@@ -11,6 +12,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Link from "react-router/es/Link";
 
 const styles = theme => ({
   root: {
@@ -94,6 +96,12 @@ class TasksView extends Component {
     }
   }
 
+  goToReportsByTaskId = taskId => {
+    console.log("taskId taskId taskId = ", taskId)
+    const path = `/reports/${taskId}`;
+    browserHistory.push(path);
+  };
+
   render = () => {
     const {classes, auth} = this.props;
 
@@ -130,7 +138,12 @@ class TasksView extends Component {
                                 <TableCell numeric>{task.car.number}</TableCell>
                                 <TableCell numeric>{task.taskStatus}</TableCell>
                                 <TableCell numeric>{task.name}</TableCell>
-                                {task.taskStatus !== 'FREE' ? (<TableCell numeric>{task.reports.length}</TableCell>) : (<TableCell numeric></TableCell>)}
+                               {/* {task.taskStatus !== 'FREE' ? (<TableCell numeric onClick={() => this.goToReportsByTaskId(task.id)}>{task.reports.length}</TableCell>) : (<TableCell numeric></TableCell>)}*/}
+                                {task.taskStatus !== 'FREE' ? (<TableCell numeric>
+                                  <Link to={`/reports/${task.id}`}>
+                                    {task.reports.length}
+                                  </Link>
+                                </TableCell>) : (<TableCell numeric></TableCell>)}
                                 <TableCell numeric>{task.reward}</TableCell>
                               </TableRow>
                           );
