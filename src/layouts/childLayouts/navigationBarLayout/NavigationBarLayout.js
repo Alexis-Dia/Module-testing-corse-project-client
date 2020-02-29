@@ -122,7 +122,6 @@ class NavigationBarLayout extends Component {
         });
     };
 
-
     onClickCreateCar = () => {
         const path = CREATE_CAR_PAGE_PATH;
         browserHistory.push(path);
@@ -143,7 +142,7 @@ class NavigationBarLayout extends Component {
 
     onClickViewAllReports = () => {
         const path = REPORTS_PAGE_PATH;
-        browserHistory.push(path);
+        browserHistory.push({pathname:path, state:'0'});
         this.toggleDrawer();
         this.setState({
             currentPage: REPORTS,

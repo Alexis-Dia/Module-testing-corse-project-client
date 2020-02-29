@@ -8,6 +8,7 @@ import Tasks from './tasks'
 import FreeTasks from './freeTasks'
 import CreateTask from './createTask'
 import Reports from './reports'
+import ReportsById from './reportsById'
 import CreateReport from './createReport'
 
 import {
@@ -75,9 +76,17 @@ export const createRoutes = (store) => ({
             },
 
             {
-                path        : REPORTS_PAGE_PATH,
+                path        : '/reports',
                 component   : CoreLayout,
                 indexRoute  : Reports,
+                childRoutes : [
+                ]
+            },
+
+            {
+                path        : '/reports/:id',
+                component   : CoreLayout,
+                indexRoute  : ReportsById,
                 childRoutes : [
                 ]
             },
