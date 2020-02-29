@@ -14,7 +14,7 @@ export const PATH_METHOD_GET_ALL_DRIVERS = '/user/allDrivers';
 export const PATH_METHOD_GET_ALL_CARS = '/car/all';
 export const PATH_METHOD_GET_ALL_TASKS = '/task/all';
 export const PATH_METHOD_GET_MINE_TASKS = '/task/allMine';
-export const PATH_METHOD_GET_ACTIVE_TASKS = '/task/allActive';
+export const PATH_METHOD_GET_FREE_TASKS = '/task/byStatus?taskStatus=FREE';
 export const PATH_METHOD_GET_ALL_REPORTS = '/report/all';
 export const PATH_METHOD_GET_REPORTS_BY_USR_ID = '/report/***';
 
@@ -73,6 +73,7 @@ export const VIEW_ALL_DRIVERS_PAGE_PATH = '/viewDrivers';
 export const VIEW_CARS_PAGE_PATH = '/viewCars';
 export const CREATE_CAR_PAGE_PATH = '/createCar';
 export const VIEW_TASKS_PAGE_PATH = '/viewTasks';
+export const VIEW_FREE_TASKS_PAGE_PATH = '/viewFreeTasks';
 export const CREATE_TASK_PAGE_PATH = '/createTask';
 export const REPORTS_PAGE_PATH = '/reports';
 export const ADD_REPORT_PAGE_PATH = '/addReport';
@@ -83,6 +84,7 @@ export const REPORTS = 'Reports';
 export const CREATE_CAR = 'CreateCar';
 export const VIEW_CARS = 'ViewCars';
 export const VIEW_TASKS = 'ViewTasks';
+export const VIEW_FREE_TASKS = 'ViewFreeTasks';
 export const CREATE_TASK = 'CreateTask';
 export const ADD_REPORT = 'Add report';
 

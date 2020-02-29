@@ -20,7 +20,7 @@ import {
     VIEW_CARS_PAGE_PATH,
     CREATE_CAR,
     VIEW_CARS,
-    VIEW_ALL_DRIVERS_PAGE_PATH, VIEW_ALL_DRIVERS
+    VIEW_ALL_DRIVERS_PAGE_PATH, VIEW_ALL_DRIVERS, VIEW_FREE_TASKS_PAGE_PATH, VIEW_FREE_TASKS
 } from '../../../properties/properties'
 import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
@@ -101,6 +101,15 @@ class NavigationBarLayout extends Component {
         this.toggleDrawer();
         this.setState({
             currentPage: VIEW_TASKS,
+        });
+    };
+
+    onClickFreeTasks = () => {
+        const path = VIEW_FREE_TASKS_PAGE_PATH;
+        browserHistory.push(path);
+        this.toggleDrawer();
+        this.setState({
+            currentPage: VIEW_FREE_TASKS,
         });
     };
 
@@ -370,6 +379,19 @@ class NavigationBarLayout extends Component {
                                                                     (
                                                                         <MenuItem primaryText="All tasks"
                                                                                   onClick={this.onClickAllTasks}/>
+                                                                    )
+                                                                }
+
+                                                                {(this.props.location.pathname === VIEW_FREE_TASKS_PAGE_PATH)
+                                                                    ?
+                                                                    (
+                                                                        <MenuItem primaryText="Free tasks"
+                                                                                  onClick={this.onClickFreeTasks}
+                                                                                  style={{backgroundColor: '#FF8F4F'}}/>
+                                                                    ) :
+                                                                    (
+                                                                        <MenuItem primaryText="Free tasks"
+                                                                                  onClick={this.onClickFreeTasks}/>
                                                                     )
                                                                 }
 
