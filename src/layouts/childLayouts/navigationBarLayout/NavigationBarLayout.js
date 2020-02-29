@@ -179,14 +179,19 @@ class NavigationBarLayout extends Component {
         const {isAuthenticated} = this.props.auth;
         let userIsDriver = false;
         let userIsAdmin = false;
+        let userStatus = '';
         if (isAuthenticated) {
             let userRole = this.props.auth.user.userRole;
+            userStatus = this.props.auth.user.userStatus;
             if (userRole === ROLE_DRIVER) {
                 userIsDriver = true;
             } else if (userRole === ROLE_ADMIN) {
                 userIsAdmin = true;
             }
         }
+
+        console.log("userStatus = ", userStatus)
+        console.log("this.props.location.pathname = ", this.props.location.pathname)
 
         const userAppBar = (
             <div>
@@ -381,7 +386,8 @@ class NavigationBarLayout extends Component {
                                                                     )
                                                                 }
 
-                                                                {(this.props.location.pathname === VIEW_FREE_TASKS_PAGE_PATH)
+                                                                {userStatus === 'FREE' && (
+                                                                (this.props.location.pathname === VIEW_FREE_TASKS_PAGE_PATH)
                                                                     ?
                                                                     (
                                                                         <MenuItem primaryText="Free tasks"
@@ -391,6 +397,7 @@ class NavigationBarLayout extends Component {
                                                                     (
                                                                         <MenuItem primaryText="Free tasks"
                                                                                   onClick={this.onClickFreeTasks}/>
+                                                                    )
                                                                     )
                                                                 }
 
