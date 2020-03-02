@@ -12,6 +12,7 @@ export const PORT = 8080
 export const PATH_METHOD_AUTH_AUTHENTICATE = '/auth/authenticate';
 export const PATH_METHOD_GET_ALL_DRIVERS = '/user/allDrivers';
 export const PATH_METHOD_GET_ALL_CARS = '/car/all';
+export const PATH_METHOD_POST_CREATE_NEW_CAR = '/car/addNew';
 export const PATH_METHOD_GET_ALL_TASKS = '/task/all';
 export const PATH_METHOD_GET_MINE_TASKS = '/task/allMine';
 export const PATH_METHOD_GET_FREE_TASKS = '/task/byStatus?taskStatus=FREE';

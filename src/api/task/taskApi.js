@@ -21,7 +21,6 @@ export function fetchFreeTasks(ob) {
 }
 
 export function createTask(ob) {
-  console.log("ob = ", ob)
   let body = ob.data;
   return  apiCallForBasicAuth(HOSTNAME, PORT, PATH_METHOD_POST_CREATE_TASK, POST, body, ob.data.credentials)
 }
