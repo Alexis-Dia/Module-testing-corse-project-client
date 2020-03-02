@@ -3,7 +3,7 @@ import { fork } from 'redux-saga/effects'
 import { loginAuthFetch, driversFetch } from '../api/login/loginSagas'
 import { carsFetch } from '../api/car/carSagas'
 import { reportsFetch, reportsByIdFetch, createNewReportFetch } from '../api/report/reportSagas'
-import { tasksFetch, mineTasksFetch, freeTasksFetch } from '../api/task/taskSagas'
+import { tasksFetch, mineTasksFetch, freeTasksFetch, createNewTaskSaga } from '../api/task/taskSagas'
 
 // Your sagas for this container
 export default function * rootSaga () {
@@ -16,6 +16,7 @@ export default function * rootSaga () {
     fork(createNewReportFetch),
     fork(tasksFetch),
     fork(mineTasksFetch),
-    fork(freeTasksFetch)
+    fork(createNewTaskSaga),
+    fork(freeTasksFetch),
   ]
 }

@@ -215,34 +215,6 @@ class NavigationBarLayout extends Component {
 
                             <Toolbar style={{backgroundColor: '#ffffff'}}>
                                 <ToolbarGroup>
-                                    <Badge
-                                        badgeContent={1}
-                                        primary={true}
-                                        badgeStyle={{top: 12, right: 12}}
-                                    >
-                                        <IconButton style={{marginTop: '-10px'}}>
-                                            <NotificationsIcon/>
-                                        </IconButton>
-                                    </Badge>
-                                    <IconMenu
-                                        iconButtonElement={
-                                            <IconButton>
-                                                <Language/>
-                                            </IconButton>
-                                        }
-                                        onItemClick={this.setLanguage}
-                                        value={this.state.language}
-                                        anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-                                        targetOrigin={{horizontal: 'right', vertical: 'top'}}
-                                        iconStyle={{fill: '#000000', marginTop: '2px'}}
-                                    >
-                                        <MenuItem
-                                            value={RU}
-                                            primaryText={RU}/>
-                                        <MenuItem
-                                            value={EN}
-                                            primaryText={EN}/>
-                                    </IconMenu>
                                     <ToolbarSeparator/>
                                     <IconButton iconStyle={{fill: '#000000'}} onClick={this.logout}>
                                         <ActionPowerSettingsNew/>
@@ -274,25 +246,6 @@ class NavigationBarLayout extends Component {
                     children={
                         <Toolbar style={{backgroundColor: '#ffffff'}}>
                             <ToolbarGroup>
-                                <IconMenu
-                                    iconButtonElement={
-                                        <IconButton>
-                                            <Language/>
-                                        </IconButton>
-                                    }
-                                    onItemClick={this.setLanguage}
-                                    value={this.state.language}
-                                    anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-                                    targetOrigin={{horizontal: 'right', vertical: 'top'}}
-                                    iconStyle={{fill: '#000000', marginTop: '2px'}}
-                                >
-                                    <MenuItem
-                                        value={RU}
-                                        primaryText={RU}/>
-                                    <MenuItem
-                                        value={EN}
-                                        primaryText={EN}/>
-                                </IconMenu>
                                 <ToolbarSeparator/>
                                 <IconMenu
                                     iconButtonElement={

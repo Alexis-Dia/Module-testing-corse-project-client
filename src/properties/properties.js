@@ -15,6 +15,7 @@ export const PATH_METHOD_GET_ALL_CARS = '/car/all';
 export const PATH_METHOD_GET_ALL_TASKS = '/task/all';
 export const PATH_METHOD_GET_MINE_TASKS = '/task/allMine';
 export const PATH_METHOD_GET_FREE_TASKS = '/task/byStatus?taskStatus=FREE';
+export const PATH_METHOD_POST_CREATE_TASK = '/task/createNew';
 export const PATH_METHOD_GET_ALL_REPORTS = '/report/all';
 export const PATH_METHOD_GET_REPORTS_BY_TASK_ID = '/report/getByTaskId?taskId=';
 export const PATH_METHOD_POST_CREATE_REPORT = '/report/createReport/';

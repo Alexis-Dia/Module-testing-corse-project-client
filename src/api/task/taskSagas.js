@@ -1,6 +1,17 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
-import {fetchTasks, fetchMineTasks, fetchFreeTasks} from "./taskApi";
-import {SUCCESS, FAILURE, UNAUTHORIZED, GET_TASKS, GET_MINE_TASK, GET_FREE_TASK} from './taskActions'
+import {fetchTasks, fetchMineTasks, fetchFreeTasks, createTask} from "./taskApi";
+import {
+    SUCCESS,
+    FAILURE,
+    UNAUTHORIZED,
+    GET_TASKS,
+    GET_MINE_TASK,
+    GET_FREE_TASK,
+    TASK_WAS_SUCCESSFULLY_CREATED,
+    CREATE_TASK
+} from './taskActions'
+import {ADD_FLASH_MESSAGE, DELETE_BY_VALUE_FLASH_MESSAGES} from "../flash/flashActions";
+import {delay} from "redux-saga";
 
 export function fetchApi (data) {
     return fetchTasks(data)
@@ -80,4 +91,29 @@ export function * tryFetchFreeTask (data) {
 
 export function * freeTasksFetch () {
     yield takeEvery(GET_FREE_TASK, tryFetchFreeTask)
+}
+
+
+export function createTaskApi (data) {
+    return createTask(data)
+        .then(data => {
+            return { response: data }
+        })
+        .catch(err => {
+            return err
+        })
+}
+
+export function * newTaskSaga (data) {
+    const { response } = yield call(createTaskApi, data);
+    if (response.httpStatus === 200) {
+        yield put({type: ADD_FLASH_MESSAGE, data: {type: "success", text: TASK_WAS_SUCCESSFULLY_CREATED}});
+        yield delay(3000, true);
+        yield put({type: DELETE_BY_VALUE_FLASH_MESSAGES, data: TASK_WAS_SUCCESSFULLY_CREATED})
+    }
+
+}
+
+export function * createNewTaskSaga () {
+    yield takeEvery(CREATE_TASK, newTaskSaga)
 }
