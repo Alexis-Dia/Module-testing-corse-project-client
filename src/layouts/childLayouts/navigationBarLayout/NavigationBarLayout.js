@@ -47,6 +47,7 @@ import {
 } from '../../../properties/properties';
 import {DELETE_ALL_FLASH_MESSAGES} from '../../../api/flash/flashActions';
 import {DELETE_CURRENT_USER} from '../../../api/login/loginActions'
+import {DELETE_TASK} from "../../../api/task/taskActions";
 
 class NavigationBarLayout extends Component {
 
@@ -171,6 +172,7 @@ class NavigationBarLayout extends Component {
     logout = () => {
         this.props.logout();
         this.props.deleteAllFlashMessages();
+        this.props.deleteTasks();
     };
 
 
@@ -415,7 +417,8 @@ class NavigationBarLayout extends Component {
                                                                     )
                                                                 }*/}
 
-                                                                {(this.props.location.pathname === ADD_REPORT_PAGE_PATH)
+                                                                {userStatus === 'BUSY' && (
+                                                                (this.props.location.pathname === ADD_REPORT_PAGE_PATH)
                                                                     ?
                                                                     (
                                                                         <MenuItem primaryText="Add report"
@@ -425,6 +428,7 @@ class NavigationBarLayout extends Component {
                                                                     (
                                                                         <MenuItem primaryText="Add report"
                                                                                   onClick={this.onClickAddReport}/>
+                                                                    )
                                                                     )
                                                                 }
 
@@ -568,6 +572,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         deleteAllFlashMessages: (data) => dispatch({type: DELETE_ALL_FLASH_MESSAGES, data}),
         logout: (data) => dispatch({type: DELETE_CURRENT_USER, data}),
+        deleteTasks: (data) => dispatch({type: DELETE_TASK, data}),
     }
 };
 

@@ -1,4 +1,4 @@
-import {GET_TASKS, SUCCESS, FAILURE, GET_FREE_TASK} from './taskActions'
+import {GET_TASKS, SUCCESS, FAILURE, GET_FREE_TASK, DELETE_TASK} from './taskActions'
 import { TASK } from './taskProperties'
 
 const initialState = {
@@ -22,6 +22,13 @@ const taskReducer = (state = initialState, action = {}) => {
       return  {
         ...state,
         list: action.response.result
+      };
+
+    case DELETE_TASK:
+
+      return  {
+        list: [],
+        freeTaskList: [],
       };
 
     case GET_FREE_TASK + FAILURE:
