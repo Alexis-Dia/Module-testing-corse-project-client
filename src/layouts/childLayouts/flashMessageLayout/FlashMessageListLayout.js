@@ -21,7 +21,7 @@ class FlashMessagestListLoyout extends React.Component {
   componentDidUpdate() {
     window.setTimeout(() => {
       this.props.deleteByValueFlashMessages(MESSAGE_LOG_IN_SUCCESSFULY);
-    }, 10000)
+    }, 3000)
   }
 
   shouldComponentUpdate() {

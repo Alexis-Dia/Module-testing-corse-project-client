@@ -3,8 +3,8 @@ import {
   GET,
   HOSTNAME,
   PATH_METHOD_GET_ALL_REPORTS,
-  PATH_METHOD_GET_FREE_TASKS, PATH_METHOD_GET_REPORTS_BY_TASK_ID,
-  PORT
+  PATH_METHOD_GET_REPORTS_BY_TASK_ID, PATH_METHOD_POST_CREATE_REPORT,
+  PORT, POST
 } from "../../properties/properties";
 
 export function fetchReports (ob) {
@@ -12,8 +12,12 @@ export function fetchReports (ob) {
 }
 
 export function fetchReportsById(ob) {
-  console.log("fetchReportsById 1.1 = ", ob)
   let taskId = ob.data.data.taskId;
   return  apiCallForBasicAuth(HOSTNAME, PORT, PATH_METHOD_GET_REPORTS_BY_TASK_ID + taskId, GET, ob.data.data, ob.data.credentials)
 }
 
+export function createNewReport(ob) {
+  let taskId = ob.data.data.taskId;
+  let body = {data: ob.data.data.report};
+  return  apiCallForBasicAuth(HOSTNAME, PORT, PATH_METHOD_POST_CREATE_REPORT + taskId, POST, body, ob.data.credentials)
+}

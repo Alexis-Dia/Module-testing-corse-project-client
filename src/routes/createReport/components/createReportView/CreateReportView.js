@@ -3,15 +3,21 @@ import {connect} from 'react-redux'
 import './CreateReportView.scss'
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import { withStyles } from '@material-ui/core/styles';
 import TextField from "@material-ui/core/TextField";
 import {GET_MINE_TASK} from "../../../../api/task/taskActions";
 import Button from "@material-ui/core/Button";
 import {DateTimePicker} from 'material-ui-pickers';
-import {DATE_TIME_FORMAT_DEFAULT, DATE_TIME_MASK, UTC_FORMAT} from "../../../../properties/properties";
+import {
+  DATE_TIME_FORMAT_DEFAULT,
+  DATE_TIME_MASK,
+  UTC_FORMAT,
+  VIEW_TASKS_PAGE_PATH
+} from "../../../../properties/properties";
 import moment from "moment";
 import {SAVE_REPORT} from "../../../../api/report/reportActions";
+import {REPORT_WAS_SUCCESSFULLY_ADDED} from "../../../../api/flash/flashActions";
+import {browserHistory} from "react-router";
 
 const styles = theme => ({
   root: {
@@ -65,16 +71,18 @@ class CreateReportView extends Component {
   }
 
   componentWillReceiveProps(nextprops) {
-    console.log("nextprops1 = ", nextprops)
     if (nextprops.task && nextprops.task !== this.props.task) {
       this.setState({tasks: nextprops.task});
-      console.log("nextprops2 = ", nextprops)
       nextprops.task.map(task => {if (task.taskStatus === 'IN_PROGRESS') {this.setState({currentTask: task.id})}});
     }
     if (nextprops.auth !== this.props.auth) {
       if (nextprops.auth && !nextprops.auth.isAuthenticated) {
         this.setState({currentTask: null});
       }
+    }
+    if (nextprops.flashMessages !== this.props.flashMessages) {
+      nextprops.flashMessages.map((msg) => {if (msg.text === REPORT_WAS_SUCCESSFULLY_ADDED) {
+        browserHistory.push(VIEW_TASKS_PAGE_PATH)}});
     }
   }
 
@@ -95,7 +103,17 @@ class CreateReportView extends Component {
   };
 
   saveReport = () => {
-    this.props.saveReport({});
+    this.props.saveReport({
+      data: {
+        taskId: this.state.currentTask,
+        report: {
+          departure: this.state.departure,
+          distance: this.state.distance,
+          arrival: this.state.arrival,
+        }
+      },
+      credentials: {emailAddress: this.props.auth.user.emailAddress, password: this.props.auth.user.password}
+    });
   };
 
   render = () => {
@@ -110,7 +128,7 @@ class CreateReportView extends Component {
                   <div style={{width: '700px'}}>
                     <Grid container spacing={0}>
                       <Grid item xs={12}>
-                        <div style={{textAlign: 'center'}}> <h4 onClick={() => console.log('this.state = ', this.state)}>Create daily report for current active task №{this.state.currentTask}</h4></div>
+                        <div style={{textAlign: 'center'}}> <h4>Create daily report for current active task №{this.state.currentTask}</h4></div>
                       </Grid>
                       <Grid item xs={12} sm={3}>
                         <div className={classes.paper}>Distance</div>
@@ -208,6 +226,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     auth: state.auth || {},
     task: state.task.list || [],
+    flashMessages: state.flashMessages,
   }
 };
 
