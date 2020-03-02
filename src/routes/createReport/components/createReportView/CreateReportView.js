@@ -8,6 +8,10 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from "@material-ui/core/TextField";
 import {GET_MINE_TASK} from "../../../../api/task/taskActions";
 import Button from "@material-ui/core/Button";
+import {DateTimePicker} from 'material-ui-pickers';
+import {DATE_TIME_FORMAT_DEFAULT, DATE_TIME_MASK, UTC_FORMAT} from "../../../../properties/properties";
+import moment from "moment";
+import {SAVE_REPORT} from "../../../../api/report/reportActions";
 
 const styles = theme => ({
   root: {
@@ -29,6 +33,10 @@ class CreateReportView extends Component {
       auth: null,
       tasks: [],
       currentTask: null,
+
+      distance: null,
+      departure: null,
+      arrival: null,
     }
   }
 
@@ -70,6 +78,26 @@ class CreateReportView extends Component {
     }
   }
 
+  onChangeDistance  = (e) => {
+    this.setState({distance: e.target.value});
+  };
+
+  onChangeDeparture  = (e) => {
+    let departure = new Date(e);
+    let departureToUTC = moment(departure).format(UTC_FORMAT);
+    this.setState({departure: departureToUTC});
+  };
+
+  onChangeArrival = (e) => {
+    let arrival = new Date(e);
+    let arrivalToUTC = moment(arrival).format(UTC_FORMAT);
+    this.setState({arrival: arrivalToUTC});
+  };
+
+  saveReport = () => {
+    this.props.saveReport({});
+  };
+
   render = () => {
     const {classes, auth} = this.props;
 
@@ -93,7 +121,7 @@ class CreateReportView extends Component {
                               type="number"
                               underlineStyle={{borderColor: '#1eb1da', color: '#1eb1da'}}
                               style={{width: '200px', marginTop: '-10px', marginLeft: '-300px'}}
-                              //onChange={this.onChangeTextFieldPropertyFilter}
+                              onChange={this.onChangeDistance}
                               name='weight'
                               //value={this.state.username}
                           />
@@ -105,16 +133,24 @@ class CreateReportView extends Component {
                       </Grid>
                       <Grid item xs={12} sm={9}>
                         <React.Fragment className={classes.paper} style={{borderColor: '#43434'}}>
-                          <TextField
-                              id="datetime-local"
-                              //label="To"
-                              type="datetime-local"
-                              defaultValue="2017-05-24T10:30"
-                              className={classes.textField}
-                              variant="outlined"
-                              InputLabelProps={{
-                                shrink: true,
+                          <DateTimePicker
+                              name="departure"
+                              showTabs={true}
+                              autoSubmit={false}
+                              ampm={false}
+                              keyboard
+                              format={DATE_TIME_FORMAT_DEFAULT}
+                              mask={DATE_TIME_MASK}
+                              value={this.state.departure}
+                              style={{
+                                width: '200px',
+                                margin: '16px 8px 0px 8px',
                               }}
+                              showTodayButton
+                              okLabel="Ok"
+                              cancelLabel="Cancel"
+                              todayLabel="Today"
+                              onChange={this.onChangeDeparture}
                           />
                         </React.Fragment>
                       </Grid>
@@ -124,24 +160,34 @@ class CreateReportView extends Component {
                       </Grid>
                       <Grid item xs={12} sm={9}>
                         <React.Fragment className={classes.paper} style={{borderColor: '#43434'}}>
-                          <TextField
-                              id="datetime-local"
-                              //label="To"
-                              type="datetime-local"
-                              defaultValue="2017-05-24T10:30"
-                              className={classes.textField}
-                              variant="outlined"
-                              InputLabelProps={{
-                                shrink: true,
+                          <DateTimePicker
+                              name="arrival"
+                              showTabs={true}
+                              autoSubmit={false}
+                              ampm={false}
+                              keyboard
+                              format={DATE_TIME_FORMAT_DEFAULT}
+                              mask={DATE_TIME_MASK}
+                              value={this.state.arrival}
+                              style={{
+                                width: '200px',
+                                margin: '16px 8px 0px 8px',
                               }}
+                              showTodayButton
+                              okLabel="Ok"
+                              cancelLabel="Cancel"
+                              todayLabel="Today"
+                              onChange={this.onChangeArrival}
                           />
                         </React.Fragment>
                       </Grid>
                     </Grid>
                     <div style={{marginLeft: '175px', marginTop: '30px'}}>
-                      <Button variant="contained" color="primary">
+                      {this.state.distance && this.state.departure && this.state.arrival &&
+                      <Button variant="contained" color="primary" onClick={this.saveReport}>
                         Add
                       </Button>
+                      }
                     </div>
 
                   </div>
@@ -168,6 +214,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getMineTasks: (data) => dispatch({type: GET_MINE_TASK, data}),
+    saveReport: (data) => dispatch({type: SAVE_REPORT, data}),
   }
 };
 

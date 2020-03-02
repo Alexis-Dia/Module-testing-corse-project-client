@@ -48,7 +48,6 @@ export const TIME_OF_RESOLVED_ALARM = 5000;
 export const INDEX_OF_FIRST_POAGE = 0;
 export const MAX_INT_SIZE = 32677;
 
-export const UTC_FORMAT = "YYYY-MM-DD HH:mm:ss";
 export const UTC_MIN_TIME_DATA = "2001-01-01 00:00:00";
 export const MINUTES = "minutes";
 export const TWO_HOURS_OFFSET_IN_MINUTES = -120;
@@ -169,3 +168,26 @@ export const PATIENT_DEFAULT_ORDERING_PARAMETERS = {
 
     ]
 };
+
+export const DATE_TIME_FORMAT_DEFAULT = "YYYY/MM/DD HH:mm";
+
+export const UTC_FORMAT = "YYYY-MM-DD HH:mm:ss";
+
+export const DATE_TIME_MASK = [
+    /\d/,
+    /\d/,
+    /\d/,
+    /\d/,
+    "/",
+    /\d/,
+    /\d/,
+    "/",
+    /\d/,
+    /\d/,
+    " ",
+    /\d/,
+    /\d/,
+    ":",
+    /\d/,
+    /\d/,
+]

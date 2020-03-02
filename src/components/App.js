@@ -1,6 +1,7 @@
 import React from 'react'
 import { browserHistory, Router } from 'react-router'
 import { Provider } from 'react-redux'
+import MuiProviderWrapper from "./MuiProvederContext";
 import PropTypes from 'prop-types'
 
 class App extends React.Component {
@@ -16,9 +17,11 @@ class App extends React.Component {
   render () {
     return (
       <Provider store={this.props.store}>
-        <div style={{ overflow: 'auto' }}>
-          <Router history={browserHistory} children={this.props.routes} />
-        </div>
+        <MuiProviderWrapper>
+          <div style={{ overflow: 'auto' }}>
+            <Router history={browserHistory} children={this.props.routes} />
+          </div>
+        </MuiProviderWrapper>
       </Provider>
     )
   }
