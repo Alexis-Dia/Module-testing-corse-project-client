@@ -416,19 +416,6 @@ class NavigationBarLayout extends Component {
                                                                     )
                                                                 }
 
-                                                                {(this.props.location.pathname === VIEW_CARS_PAGE_PATH)
-                                                                    ?
-                                                                    (
-                                                                        <MenuItem primaryText="View cars"
-                                                                                  onClick={this.onClickViewCars}
-                                                                                  style={{backgroundColor: '#FF8F4F'}}/>
-                                                                    ) :
-                                                                    (
-                                                                        <MenuItem primaryText="View cars"
-                                                                                  onClick={this.onClickViewCars}/>
-                                                                    )
-                                                                }
-
                                                                 {(this.props.location.pathname === CREATE_CAR_PAGE_PATH)
                                                                     ?
                                                                     (
@@ -439,6 +426,19 @@ class NavigationBarLayout extends Component {
                                                                     (
                                                                         <MenuItem primaryText="Create car"
                                                                                   onClick={this.onClickCreateCar}/>
+                                                                    )
+                                                                }
+
+                                                                {(this.props.location.pathname === VIEW_CARS_PAGE_PATH)
+                                                                    ?
+                                                                    (
+                                                                        <MenuItem primaryText="View cars"
+                                                                                  onClick={this.onClickViewCars}
+                                                                                  style={{backgroundColor: '#FF8F4F'}}/>
+                                                                    ) :
+                                                                    (
+                                                                        <MenuItem primaryText="View cars"
+                                                                                  onClick={this.onClickViewCars}/>
                                                                     )
                                                                 }
 
