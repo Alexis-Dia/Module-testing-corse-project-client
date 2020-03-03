@@ -1,9 +1,10 @@
-import { combineReducers } from 'redux'
-import locationReducer from './location'
-import loginReducer from '../api/login/loginReducer'
-import carReducer from '../api/car/carReducer'
-import taskReducer from '../api/task/taskReducer'
-import reportReducer from '../api/report/reportReducer'
+import { combineReducers } from 'redux';
+import locationReducer from './location';
+import loginReducer from '../api/login/loginReducer';
+import carReducer from '../api/car/carReducer';
+import brandReducer from '../api/brand/brandReducer';
+import taskReducer from '../api/task/taskReducer';
+import reportReducer from '../api/report/reportReducer';
 import flashReducer from "../api/flash/flashReducer";
 
 
@@ -12,6 +13,7 @@ export const makeRootReducer = (asyncReducers) => {
     location: locationReducer,
     auth: loginReducer,
     car: carReducer,
+    brand: brandReducer,
     task: taskReducer,
     report: reportReducer,
     flashMessages: flashReducer,

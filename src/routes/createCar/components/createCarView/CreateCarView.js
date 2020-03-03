@@ -13,9 +13,12 @@ import {
   DATE_TIME_MASK,
   UTC_FORMAT
 } from "../../../../properties/properties";
-import {CAR_WAS_SUCCESSFULLY_CREATED, CREATE_CAR, GET_BRANDS} from "../../../../api/car/carActions";
+import {CAR_WAS_SUCCESSFULLY_CREATED, CREATE_CAR} from "../../../../api/car/carActions";
 import {browserHistory} from "react-router";
 import Button from "@material-ui/core/Button";
+import {GET_BRANDS} from "../../../../api/brand/brandActions";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
 
 const styles = theme => ({
   root: {
@@ -34,7 +37,7 @@ class CreateCarView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      brand: null,
+      brandID: null,
       year: null,
       number:null,
       dateOfReceipt: null,
@@ -58,6 +61,10 @@ class CreateCarView extends Component {
   }
 
   componentDidMount() {
+    this.props.getAllBrands({
+      data: {},
+      credentials: {emailAddress: this.props.auth.user.emailAddress, password: this.props.auth.user.password}
+    });
   }
 
   componentWillReceiveProps(nextprops) {
@@ -68,9 +75,7 @@ class CreateCarView extends Component {
   }
 
   onChangeBrand  = (e) => {
-    this.setState({brand: {
-        id: e.target.value
-      }});
+    this.setState({ brandId: e.target.value});
   };
 
   onChangeYear  = (e) => {
@@ -92,7 +97,7 @@ class CreateCarView extends Component {
   saveCar = () => {
     this.props.createCar({
       data: {
-        brand: this.state.brand,
+        brand: {id: this.state.brandId},
         year: this.state.year,
         number: this.state.number,
         dateOfReceipt: this.state.dateOfReceipt,
@@ -120,14 +125,18 @@ class CreateCarView extends Component {
                         <div className={classes.paper}>Brand</div>
                       </Grid>
                       <Grid item xs={12} sm={9}>
-                        <div className={classes.paper} style={{borderColor: '#43434'}}>
-                          <TextField
-                              underlineStyle={{borderColor: '#1eb1da', color: '#1eb1da'}}
-                              style={{width: '200px', marginTop: '-10px', marginLeft: '-300px'}}
-                              onChange={this.onChangeBrand}
-                              name='brand'
-                          />
-                        </div>
+                        <React.Fragment style={{borderColor: '#43434'}}>
+                          <div style={{marginLeft: '45px', marginTop: '20px'}} >
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                onChange={this.onChangeBrand}
+                                style={{width: "200px"}}
+                            >
+                             {this.props.brand.map(brand => <MenuItem  key={brand.id} value={brand.id}>{brand.brand + ' ' +  brand.model}</MenuItem>)}
+                            </Select>
+                          </div>
+                        </React.Fragment>
                       </Grid>
 
                       <Grid item xs={12} sm={3}>
@@ -202,7 +211,7 @@ class CreateCarView extends Component {
                         </div>
                       </Grid>
                       <div style={{marginLeft: '175px', marginTop: '30px'}}>
-                        {this.state.brand && this.state.year && this.state.number && this.state.dateOfReceipt &&
+                        {this.state.brandId && this.state.year && this.state.number && this.state.dateOfReceipt &&
                         <Button variant="contained" color="primary" onClick={this.saveCar}>
                           Add car
                         </Button>
@@ -227,13 +236,14 @@ const mapStateToProps = (state, ownProps) => {
   return {
     auth: state.auth || {},
     flashMessages: state.flashMessages || {},
+    brand: state.brand.list || [],
   }
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     createCar: (data) => dispatch({type: CREATE_CAR, data}),
-    getAllBrands: () => dispatch({type: GET_BRANDS, data}),
+    getAllBrands: (data) => dispatch({type: GET_BRANDS, data})
   }
 };
 
