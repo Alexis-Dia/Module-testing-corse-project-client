@@ -67,7 +67,7 @@ class CreateCarView extends Component {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextprops) {
     console.log("CAR_WAS_SUCCESSFULLY_CREATED 0 = ", nextprops.flashMessages)
     if (nextprops.flashMessages !== this.props.flashMessages) {
       console.log("CAR_WAS_SUCCESSFULLY_CREATED 1 = ", nextprops.flashMessages)
