@@ -1,5 +1,5 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
-import {fetchTasks, fetchMineTasks, fetchFreeTasks, createTask, updateTaskApi} from "./taskApi";
+import {fetchTasks, fetchMineTasks, fetchFreeTasks, createTask, updateTaskApi, updateTaskToFinishStatusApi} from "./taskApi";
 import {
     SUCCESS,
     FAILURE,
@@ -8,7 +8,12 @@ import {
     GET_MINE_TASK,
     GET_FREE_TASK,
     TASK_WAS_SUCCESSFULLY_CREATED,
-    CREATE_TASK, TAKE_TASK, TASK_WAS_SUCCESSFULLY_ASSIGNED, CHANGE_USER_TO_BUSY
+    CREATE_TASK,
+    TAKE_TASK,
+    TASK_WAS_SUCCESSFULLY_ASSIGNED,
+    CHANGE_USER_TO_BUSY,
+    FINISH_TASK,
+    TASK_WAS_SUCCESSFULLY_MOVED_TO_VALIDATING_STATUS
 } from './taskActions'
 import {ADD_FLASH_MESSAGE, DELETE_BY_VALUE_FLASH_MESSAGES} from "../flash/flashActions";
 import {delay} from "redux-saga";
@@ -142,4 +147,30 @@ export function * tryUpdateTask (data) {
 
 export function * updateTaskSaga () {
     yield takeEvery(TAKE_TASK, tryUpdateTask)
+}
+
+
+export function tryUpdateTaskToFinishStatusApi (data) {
+    return updateTaskToFinishStatusApi(data)
+        .then(data => {
+            return { response: data }
+        })
+        .catch(err => {
+            return err
+        })
+}
+
+export function * tryUpdateTaskToFinishStatus (data) {
+    const { response } = yield call(tryUpdateTaskToFinishStatusApi, data);
+    if (response.httpStatus === 200) {
+        yield put({type: ADD_FLASH_MESSAGE, data: {type: "success", text: TASK_WAS_SUCCESSFULLY_MOVED_TO_VALIDATING_STATUS}});
+        yield put({type: CHANGE_USER_TO_BUSY, data: {}});
+        yield delay(3000, true);
+        yield put({type: DELETE_BY_VALUE_FLASH_MESSAGES, data: TASK_WAS_SUCCESSFULLY_MOVED_TO_VALIDATING_STATUS})
+    }
+
+}
+
+export function * updateTaskToFinishStatusSaga () {
+    yield takeEvery(FINISH_TASK, tryUpdateTaskToFinishStatus)
 }

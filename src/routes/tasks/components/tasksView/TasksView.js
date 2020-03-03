@@ -1,10 +1,13 @@
 import React, {Component} from 'react'
-import {browserHistory} from "react-router";
 import {connect} from 'react-redux'
 import './TasksView.scss'
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import {ADD_FLASH_MESSAGE} from "../../../../api/flash/flashActions";
-import {GET_MINE_TASK, GET_TASKS, TASK_WAS_SUCCESSFULLY_ASSIGNED} from "../../../../api/task/taskActions";
+import {
+  FINISH_TASK,
+  GET_MINE_TASK,
+  GET_TASKS,
+} from "../../../../api/task/taskActions";
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -97,15 +100,14 @@ class TasksView extends Component {
     }
   }
 
-  goToReportsByTaskId = taskId => {
-    console.log("taskId taskId taskId = ", taskId)
-    const path = `/reports/${taskId}`;
-    browserHistory.push(path);
-  };
-
-
-  finishTaskByDriver = () => {
-
+  finishTaskByDriver = (id) => {
+    this.props.finishTask({
+      data: {
+        taskId: id,
+        statusId: 3
+      },
+      credentials: {emailAddress: this.props.auth.user.emailAddress, password: this.props.auth.user.password}
+    });
   };
 
   finishTaskByAdmin = () => {
@@ -163,7 +165,7 @@ class TasksView extends Component {
                                 <TableCell>{(auth.user.userRole === 'USER' && auth.user.userStatus === 'BUSY' && task.taskStatus === 'IN_PROGRESS' && task.reports.length > 0) ?
                                     (
                                         <div>
-                                          <Button variant="contained" color="primary" onClick={this.finishTaskByDriver}>
+                                          <Button variant="contained" color="primary" onClick={() => {this.finishTaskByDriver(task.id)}}>
                                             Finish task
                                           </Button>
                                         </div>
@@ -218,7 +220,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getTasks: (data) => dispatch({type: GET_TASKS, data}),
     getMineTasks: (data) => dispatch({type: GET_MINE_TASK, data}),
-    showFlashMessage: (data) => dispatch({type: ADD_FLASH_MESSAGE, data})
+    showFlashMessage: (data) => dispatch({type: ADD_FLASH_MESSAGE, data}),
+    finishTask: (data) => dispatch({type: FINISH_TASK, data}),
   }
 };
 
