@@ -1,8 +1,9 @@
-import { GET_CARS, CREATE_CAR, SUCCESS, FAILURE } from './carActions'
+import {GET_CARS, CREATE_CAR, SUCCESS, FAILURE, GET_ALL_FREE_CARS} from './carActions'
 import { CAR } from './carProperties'
 
 const initialState = {
     list: [],
+    listOfFreeCars: [],
 };
 
 const carReducer = (state = initialState, action = {}) => {
@@ -20,6 +21,20 @@ const carReducer = (state = initialState, action = {}) => {
       return  {
         ...state,
         list: action.response.result
+      };
+
+    case GET_ALL_FREE_CARS + SUCCESS:
+
+      return  {
+        ...state,
+        listOfFreeCars: action.response.result
+      };
+
+    case GET_ALL_FREE_CARS + SUCCESS:
+
+      return  {
+        ...state,
+        listOfFreeCars: action.response.result
       };
 
     default:

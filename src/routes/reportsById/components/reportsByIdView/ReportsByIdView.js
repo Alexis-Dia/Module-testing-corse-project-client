@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import './ReportsByIdView.scss'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import {
   TIME_OF_ASKING_QUESTION_POP_UP,
   TIME_OF_WAITING_AFTER_ASKING,

@@ -3,7 +3,10 @@ import {
   GET,
   HOSTNAME,
   PATH_METHOD_GET_ALL_CARS,
-  PATH_METHOD_GET_ALL_DRIVERS, PATH_METHOD_POST_CREATE_NEW_CAR, PATH_METHOD_POST_CREATE_TASK,
+  PATH_METHOD_GET_ALL_DRIVERS,
+  PATH_METHOD_GET_ALL_FREE_CARS,
+  PATH_METHOD_POST_CREATE_NEW_CAR,
+  PATH_METHOD_POST_CREATE_TASK,
   PORT,
   POST
 } from "../../properties/properties";
@@ -14,4 +17,8 @@ export function fetchCars (ob) {
 
 export function createNewCar(ob) {
   return  apiCallForBasicAuth(HOSTNAME, PORT, PATH_METHOD_POST_CREATE_NEW_CAR, POST, ob.data, ob.data.credentials)
+}
+
+export function fetchFreeCars(ob) {
+  return  apiCallForBasicAuth(HOSTNAME, PORT, PATH_METHOD_GET_ALL_FREE_CARS, GET, ob.data, ob.data.credentials)
 }

@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {GET_CARS} from "../../../../api/car/carActions";
 import './CarsView.scss'
-import MuiThemeProvider from "@material-ui/core/es/styles/MuiThemeProvider";
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import {ADD_FLASH_MESSAGE} from "../../../../api/flash/flashActions";
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -50,7 +50,7 @@ class CarsView extends Component {
   }
 
   componentDidMount() {
-    this.props.getCars({
+    this.props.getAllCars({
       data: {},
       credentials: {emailAddress: this.props.auth.user.emailAddress, password: this.props.auth.user.password}
     });
@@ -125,7 +125,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    getCars: (data) => dispatch({type: GET_CARS, data}),
+    getAllCars: (data) => dispatch({type: GET_CARS, data}),
     showFlashMessage: (data) => dispatch({type: ADD_FLASH_MESSAGE, data})
   }
 };

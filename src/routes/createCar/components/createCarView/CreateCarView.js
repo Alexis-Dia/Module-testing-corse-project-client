@@ -67,9 +67,12 @@ class CreateCarView extends Component {
     });
   }
 
-  componentWillReceiveProps(nextprops) {
+  componentWillReceiveProps(nextProps) {
+    console.log("CAR_WAS_SUCCESSFULLY_CREATED 0 = ", nextprops.flashMessages)
     if (nextprops.flashMessages !== this.props.flashMessages) {
+      console.log("CAR_WAS_SUCCESSFULLY_CREATED 1 = ", nextprops.flashMessages)
       nextprops.flashMessages.map((msg) => {if (msg.text === CAR_WAS_SUCCESSFULLY_CREATED) {
+        console.log("CAR_WAS_SUCCESSFULLY_CREATED 2 = ", msg.text)
         browserHistory.push(VIEW_CARS_PAGE_PATH)}});
     }
   }

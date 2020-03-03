@@ -68,6 +68,10 @@ class CreateReportView extends Component {
       credentials: {emailAddress: this.props.auth.user.emailAddress, password: this.props.auth.user.password}
     });
     this.props.task && this.props.task.map(task => {if (task.taskStatus === 'IN_PROGRESS') {this.setState({currentTask: task.id})}});
+    if (this.props.task && this.props.task !== this.props.task) {
+      this.setState({tasks: this.props.task});
+      this.props.task.map(task => {if (task.taskStatus === 'IN_PROGRESS') {this.setState({currentTask: task.id})}});
+    }
   }
 
   componentWillReceiveProps(nextprops) {

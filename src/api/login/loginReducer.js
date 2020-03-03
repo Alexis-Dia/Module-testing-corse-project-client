@@ -1,5 +1,6 @@
 import { DELETE_CURRENT_USER, SUCCESS, FAILURE, LOGIN, GET_DRIVERS } from './loginActions'
 import { LOGIN_INVALID_CREDENTIALS } from './loginProperties'
+import {CHANGE_USER_TO_BUSY} from "../task/taskActions";
 
 const initialState = {
     isAuthenticated: false,
@@ -44,6 +45,13 @@ const loginReducer = (state = initialState, action = {}) => {
         ...state,
         isAuthenticated: false,
         user: {}
+      };
+
+    case CHANGE_USER_TO_BUSY:
+      console.log("CHANGE_USER_TO_BUSY = ", {...state.user, userStatus: 'BUSY'})
+      return {
+        ...state,
+        user: {...state.user, userStatus: 'BUSY'}
       };
 
     default:

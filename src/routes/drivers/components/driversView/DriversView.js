@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import './DriversView.scss'
-import MuiThemeProvider from "@material-ui/core/es/styles/MuiThemeProvider";
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import {GET_DRIVERS, LOGIN} from "../../../../api/login/loginActions";
 import {ADD_FLASH_MESSAGE} from "../../../../api/flash/flashActions";
 import { withStyles } from '@material-ui/core/styles';
