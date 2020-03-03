@@ -3,19 +3,11 @@ import {connect} from 'react-redux'
 import './ReportsView.scss'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {
-  TIME_OF_ASKING_QUESTION_POP_UP,
-  TIME_OF_WAITING_AFTER_ASKING,
-  POP_UP_MESSAGE_TYPE_PRIMARY,
-  MIN_NUMBERS_OF_CHARACTERS_IN_QUESTION,
-  EMPTY_STRING, REGISTARATION_PAGE_PATH, ROLE_DRIVER, ROLE_ADMIN
+ROLE_DRIVER, ROLE_ADMIN
 } from '../../../../properties/properties'
-import {WARNING_QUESTION_LESS_THEN} from '../../../../properties/warningMessages'
 import {
   ADD_FLASH_MESSAGE,
-  MESSAGE_YOU_ASKED_QUESTION_IN_SUCCESSFULY,
 } from "../../../../api/flash/flashActions";
-import {browserHistory} from "react-router";
-import { EMPTY_PAGE_PATH } from '../../../../properties/properties';
 import {GET_REPORTS, GET_REPORTS_BY_TASK_ID} from "../../../../api/report/reportActions";
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';

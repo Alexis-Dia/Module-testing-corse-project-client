@@ -10,6 +10,7 @@ import CreateTask from './createTask'
 import Reports from './reports'
 import ReportsById from './reportsById'
 import CreateReport from './createReport'
+import SignUp from './signUp'
 
 import {
     ADD_REPORT_PAGE_PATH,
@@ -95,6 +96,14 @@ export const createRoutes = (store) => ({
                 path        : ADD_REPORT_PAGE_PATH,
                 component   : CoreLayout,
                 indexRoute  : CreateReport,
+                childRoutes : [
+                ]
+            },
+
+            {
+                path        : '/signUp',
+                component   : CoreLayout,
+                indexRoute  : SignUp,
                 childRoutes : [
                 ]
             },

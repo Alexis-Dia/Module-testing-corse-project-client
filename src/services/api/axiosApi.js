@@ -12,6 +12,34 @@ import {
     HTTP, PATH_METHOD_AUTH_AUTHENTICATE
 } from '../../properties/properties'
 
+export function apiSignUp (hostname, port, pathMethod, method, body = {data: {}}) {
+
+    var url = HTTP + hostname + DELIMITER + port + pathMethod;
+
+    const options = {
+        method: method,
+        url: url,
+        headers: {
+            "Access-Control-Allow-Credentials" : "true",
+            "Access-Control-Allow-Origin" : url,
+            "Content-Type" : "application/json"
+        },
+        responseType: JSON
+    }
+    if (body.data) {
+        options.data = body.data
+    }
+    return axios(options)
+        .then(response => {
+            console.error('axiosApi response 0 = ', response);
+            return { 'httpStatus': response.status, 'result': response.data }
+        })
+        .catch(error => {
+            console.error('axiosApi error 1 = ', error);
+            throw error;
+        })
+}
+
 export function apiCall (hostname, port, method, body) {
 
     var url = HTTP + hostname + DELIMITER + port + PATH_METHOD_AUTH_AUTHENTICATE + "?emailAddress=" + body.data.user.emailAddress + "&password=" + body.data.user.password;

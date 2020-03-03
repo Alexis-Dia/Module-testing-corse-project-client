@@ -1,9 +1,18 @@
-import { fetchAuth, fetchDrivers } from './loginApi'
-import { takeEvery, call, put } from 'redux-saga/effects'
-import {SUCCESS, FAILURE, UNAUTHORIZED, LOGIN, GET_DRIVERS} from './loginActions'
+import { fetchAuth, fetchDrivers, createNewUser } from './loginApi';
+import { takeEvery, call, put } from 'redux-saga/effects';
+import {delay} from "redux-saga";
+import {
+    SUCCESS,
+    FAILURE,
+    UNAUTHORIZED,
+    LOGIN,
+    GET_DRIVERS,
+    SIGN_UP,
+    USER_WAS_SUCCESSFULLY_CREATED, USER_EXISTS_WITH_THE_SAME_EMAIL
+} from './loginActions';
+import {ADD_FLASH_MESSAGE, DELETE_BY_VALUE_FLASH_MESSAGES} from "../flash/flashActions";
 
 export function fetchAuthApi (data) {
-    console.log("1")
     return fetchAuth(data)
         .then(data => {
             return { response: data }
@@ -15,8 +24,6 @@ export function fetchAuthApi (data) {
 
 export function * tryFetchAuth (data) {
         const { response, error } = yield call(fetchAuthApi, data);
-        console.log("2.1 status = ", response)
-        console.log("2.2 status = ", error)
         if (response.httpStatus === 401) {
             yield put({type: LOGIN + UNAUTHORIZED, response})
         } else if (response.httpStatus === 200) {
@@ -28,14 +35,12 @@ export function * tryFetchAuth (data) {
 }
 
 export function * loginAuthFetch () {
-    console.log("21w")
     yield takeEvery(LOGIN, tryFetchAuth)
 }
 
 
 
 export function fetchDriversApi (data) {
-    console.log("1")
     return fetchDrivers(data)
         .then(data => {
             return { response: data }
@@ -46,10 +51,7 @@ export function fetchDriversApi (data) {
 }
 
 export function * tryFetchDrivers (data) {
-    console.log("data = ", data)
     const { response, error } = yield call(fetchDriversApi, data);
-    console.log("2.1 status = ", response)
-    console.log("2.2 status = ", error)
     if (response.httpStatus === 401) {
         yield put({type: GET_DRIVERS + UNAUTHORIZED, response})
     } else if (response.httpStatus === 200) {
@@ -62,4 +64,33 @@ export function * tryFetchDrivers (data) {
 
 export function * driversFetch () {
     yield takeEvery(GET_DRIVERS, tryFetchDrivers)
+}
+
+
+export function signUpApi (data) {
+    return createNewUser(data)
+        .then(data => {
+            return { response: data }
+        })
+        .catch(err => {
+            return err
+        })
+}
+
+export function * createUser (data) {
+    const { response } = yield call(signUpApi, data);
+    if (response.httpStatus === 200) {
+        yield put({type: ADD_FLASH_MESSAGE, data: {type: "success", text: USER_WAS_SUCCESSFULLY_CREATED}});
+        yield delay(3000, true);
+        yield put({type: DELETE_BY_VALUE_FLASH_MESSAGES, data: USER_WAS_SUCCESSFULLY_CREATED})
+    } else {
+        yield put({type: ADD_FLASH_MESSAGE, data: {type: "error", text: USER_EXISTS_WITH_THE_SAME_EMAIL}});
+        yield delay(3000, true);
+        yield put({type: DELETE_BY_VALUE_FLASH_MESSAGES, data: USER_EXISTS_WITH_THE_SAME_EMAIL})
+    }
+
+}
+
+export function * createUserSaga () {
+    yield takeEvery(SIGN_UP, createUser)
 }

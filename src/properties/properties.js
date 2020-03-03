@@ -11,6 +11,7 @@ export const PORT = 8080
 
 export const PATH_METHOD_AUTH_AUTHENTICATE = '/auth/authenticate';
 export const PATH_METHOD_GET_ALL_DRIVERS = '/user/allDrivers';
+export const PATH_METHOD_SIGN_UP = '/user/signUp';
 export const PATH_METHOD_GET_ALL_CARS = '/car/all';
 export const PATH_METHOD_POST_CREATE_NEW_CAR = '/car/addNew';
 export const PATH_METHOD_GET_ALL_BRANDS = '/brand/all';
@@ -73,6 +74,7 @@ export const STRING_DASH = '-';
 export const POP_UP_MESSAGE_TYPE_PRIMARY = 'primary';
 
 export const EMPTY_PAGE_PATH = '/';
+export const REGISTARATION_PAGE_PATH = '/signUp';
 export const VIEW_ALL_DRIVERS_PAGE_PATH = '/viewDrivers';
 export const VIEW_CARS_PAGE_PATH = '/viewCars';
 export const CREATE_CAR_PAGE_PATH = '/createCar';
