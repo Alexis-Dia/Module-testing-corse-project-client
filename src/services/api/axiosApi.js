@@ -43,8 +43,7 @@ export function apiSignUp (hostname, port, pathMethod, method, body = {data: {}}
 export function apiCall (hostname, port, method, body) {
 
     var url = HTTP + hostname + DELIMITER + port + PATH_METHOD_AUTH_AUTHENTICATE + "?emailAddress=" + body.data.user.emailAddress + "&password=" + body.data.user.password;
-    console.log("url = ", url)
-    console.log("body = ", body)
+
     const options = {
         method: method,
         url: url,

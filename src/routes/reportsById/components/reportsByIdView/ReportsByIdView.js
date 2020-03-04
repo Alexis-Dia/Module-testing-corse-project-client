@@ -64,7 +64,6 @@ class ReportsByIdView extends Component {
   }
 
   componentDidMount() {
-    console.log("componentDidMount 887")
     if (this.props.auth.isAuthenticated && this.props.taskId) {
       this.props.getReportsByTaskId({
         data: {taskId: this.props.taskId},
@@ -77,9 +76,6 @@ class ReportsByIdView extends Component {
     if (nextprops.auth !== this.props.auth) {
       this.setState({auth: nextprops.auth});
       if (nextprops.auth.isAuthenticated) {
-        console.log("componentDidMount 8881 = ", nextprops.auth.isAuthenticated)
-        console.log("componentDidMount 8881 = ", nextprops.auth.user.emailAddress)
-        console.log("componentDidMount 8882 = ", nextprops.auth.user.password)
         this.props.getReportsByTaskId({
           data: {taskId: this.props.taskId},
           credentials: {emailAddress: nextprops.auth.user.emailAddress, password: nextprops.auth.user.password}
@@ -118,7 +114,7 @@ class ReportsByIdView extends Component {
                               <Table stickyHeader aria-label="sticky table">
                                 <TableHead>
                                   <TableRow>
-                                    <TableCell onClick={() => console.log("taskId = ", this.props.taskId)}>Id</TableCell>
+                                    <TableCell>Id</TableCell>
                                     <TableCell numeric>Departure</TableCell>
                                     <TableCell numeric>Weight</TableCell>
                                     <TableCell numeric>Distance</TableCell>
@@ -151,7 +147,7 @@ class ReportsByIdView extends Component {
                               <Table stickyHeader aria-label="sticky table">
                                 <TableHead>
                                   <TableRow>
-                                    <TableCell onClick={() => console.log("taskId = ", this.props.taskId)}>Id</TableCell>
+                                    <TableCell>Id</TableCell>
                                     <TableCell numeric>Departure</TableCell>
                                     <TableCell numeric>Weight</TableCell>
                                     <TableCell numeric>Distance</TableCell>

@@ -57,15 +57,12 @@ class TasksView extends Component {
   }
 
   componentDidMount() {
-    console.log("ADSASD PROPS", this.props.auth)
     if (this.props.auth.user.userRole === 'USER') {
-      console.log("ADSASD USER")
       this.props.getMineTasks({
         data: {},
         credentials: {emailAddress: this.props.auth.user.emailAddress, password: this.props.auth.user.password}
       });
     } else if(this.props.auth.user.userRole === 'ADMIN') {
-      console.log("ADSASD ADMIN")
       this.props.getTasks({
         data: {},
         credentials: {emailAddress: this.props.auth.user.emailAddress, password: this.props.auth.user.password}
@@ -74,19 +71,14 @@ class TasksView extends Component {
   }
 
   componentWillReceiveProps(nextprops) {
-    console.log("IIIIIIII nextprops", nextprops)
     if (nextprops.auth !== this.props.auth) {
-      console.log("IIIIIIII2 nextprops", nextprops.auth)
       if (nextprops.auth.isAuthenticated) {
-        console.log("IIIIIIII3 nextprops", nextprops.auth)
         if (nextprops.auth.user.userRole === 'USER') {
-          console.log("IIIIIIII4 nextprops", nextprops.auth)
           this.props.getMineTasks({
             data: {},
             credentials: {emailAddress: nextprops.auth.user.emailAddress, password: nextprops.auth.user.password}
           });
         } else if(nextprops.auth.user.userRole === 'ADMIN') {
-          console.log("IIIIIIII5 nextprops", nextprops.auth)
           this.props.getTasks({
             data: {},
             credentials: {emailAddress: nextprops.auth.user.emailAddress, password: nextprops.auth.user.password}

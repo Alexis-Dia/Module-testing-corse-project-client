@@ -82,18 +82,13 @@ class FreeTasksView extends Component {
   };
 
   onChoseCar  = (e, id) => {
-    console.log("chosenCarId = ", e.target.value)
     this.setState({ chosenCarId: e.target.value, chosenTaskId: id});
   };
 
   componentWillReceiveProps(nextprops) {
-    console.log("IIIIIIII nextprops", nextprops.auth)
     if (nextprops.auth !== this.props.auth) {
-      console.log("IIIIIIII2 nextprops", nextprops.auth)
       if (nextprops.auth.isAuthenticated) {
-        console.log("IIIIIIII3 nextprops", nextprops.auth)
         if (nextprops.auth.user.userRole === 'USER') {
-          console.log("IIIIIIII4 nextprops", nextprops.auth)
           this.props.getFreeTasks({
             data: {},
             credentials: {emailAddress: nextprops.auth.user.emailAddress, password: nextprops.auth.user.password}

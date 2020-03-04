@@ -24,7 +24,6 @@ class LoginForm extends Component {
         if (nextprops.user !== this.props.user) {
             this.setState({auth: nextprops.user});
             if (nextprops.user.isAuthenticated) {
-                console.log("showFlashMessage = ")
                 this.props.showFlashMessage({ type: 'success',  text: MESSAGE_LOG_IN_SUCCESSFULY});
                 this.props.toggleLogIn();
             }
@@ -33,10 +32,7 @@ class LoginForm extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-
         if (true) {
-            console.log("this.state.identifier = ", this.state.identifier)
-            console.log("this.state.password = ", this.state.password)
             this.props.login(
                 {
                     user:
@@ -46,7 +42,6 @@ class LoginForm extends Component {
                         }
                 }
             );
-            console.log("3")
         }
     };
 

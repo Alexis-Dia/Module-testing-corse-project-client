@@ -51,7 +51,6 @@ class InformationView extends Component {
 
   render = () => {
     const {classes, auth} = this.props;
-    console.log("this.props = ", this.props)
 
     return (
       <div style={{height: '650px', marginLeft: '200px', marginTop: '75px'}}>

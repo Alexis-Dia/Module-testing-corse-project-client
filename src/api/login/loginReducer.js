@@ -48,7 +48,6 @@ const loginReducer = (state = initialState, action = {}) => {
       };
 
     case CHANGE_USER_TO_BUSY:
-      console.log("CHANGE_USER_TO_BUSY = ", {...state.user, userStatus: 'BUSY'})
       return {
         ...state,
         user: {...state.user, userStatus: 'BUSY'}

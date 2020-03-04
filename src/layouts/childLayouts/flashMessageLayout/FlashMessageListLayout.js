@@ -33,7 +33,6 @@ class FlashMessagestListLoyout extends React.Component {
       this.setState({auth: nextprops.user});
     }
     this.setState({flashMessages: nextprops.flashMessages});
-    console.log()
   }
 
     render() {

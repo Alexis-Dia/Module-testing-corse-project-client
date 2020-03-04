@@ -58,15 +58,12 @@ class DriversView extends Component {
 
   componentWillReceiveProps(nextprops) {
     if (nextprops.auth && nextprops.auth.list && nextprops.auth.list !== this.props.auth.list) {
-      console.log(" nextprops.auth. = ", nextprops.auth)
-      console.log(" nextprops.auth.list = ", nextprops.auth.list)
       this.setState({drivers: nextprops.auth.list});
     }
   }
 
   render = () => {
     const {classes, auth} = this.props;
-    console.log("this.props = ", this.props)
 
     return (
       <div style={{height: '650px', marginLeft: '200px', marginTop: '75px'}}>

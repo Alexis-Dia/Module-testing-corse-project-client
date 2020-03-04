@@ -192,9 +192,6 @@ class NavigationBarLayout extends Component {
             }
         }
 
-        console.log("userStatus = ", userStatus)
-        console.log("this.props.location.pathname = ", this.props.location.pathname)
-
         const userAppBar = (
             <div>
                 <MuiThemeProvider>

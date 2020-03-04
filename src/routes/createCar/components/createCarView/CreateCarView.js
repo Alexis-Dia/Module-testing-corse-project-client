@@ -68,11 +68,8 @@ class CreateCarView extends Component {
   }
 
   componentWillReceiveProps(nextprops) {
-    console.log("CAR_WAS_SUCCESSFULLY_CREATED 0 = ", nextprops.flashMessages)
     if (nextprops.flashMessages !== this.props.flashMessages) {
-      console.log("CAR_WAS_SUCCESSFULLY_CREATED 1 = ", nextprops.flashMessages)
       nextprops.flashMessages.map((msg) => {if (msg.text === CAR_WAS_SUCCESSFULLY_CREATED) {
-        console.log("CAR_WAS_SUCCESSFULLY_CREATED 2 = ", msg.text)
         browserHistory.push(VIEW_CARS_PAGE_PATH)}});
     }
   }
@@ -111,7 +108,6 @@ class CreateCarView extends Component {
 
   render = () => {
     const {classes, auth} = this.props;
-    console.log("this.props = ", this.props)
 
     return (
       <div style={{height: '650px', marginLeft: '200px'}}>
@@ -121,7 +117,7 @@ class CreateCarView extends Component {
                   <div style={{width: '800px'}}>
                     <Grid container spacing={0}>
                       <Grid item xs={12}>
-                        <div style={{textAlign: 'center', marginLeft: '-75px'}}> <h4 onClick={() => console.log("Create new ca", this.state)}>Create new car</h4></div>
+                        <div style={{textAlign: 'center', marginLeft: '-75px'}}><h4>Create new car</h4></div>
                       </Grid>
 
                       <Grid item xs={12} sm={3}>

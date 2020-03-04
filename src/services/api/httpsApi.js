@@ -5,8 +5,6 @@ const project = require('../../../project.config')
 
 export function apiCallForLoggedUser (hostname, port, pathMethod, method, body = {data: {}}) {
 
-  console.log('body = ', body)
-
   if (project.env !== 'development') {
     hostname = window.location.hostname
   }
@@ -43,23 +41,19 @@ export function apiCallForLoggedUser (hostname, port, pathMethod, method, body =
 
         try {
           const obj = JSON.parse(result);
-          console.log('nextprops = ', obj)
           resolve({ 'httpStatus': PAGE_STATUS_200, 'result': obj });
         }
         catch(error) {
-          console.error('httpsApi error = ', error);
           resolve(resolve({ 'httpStatus': PAGE_STATUS_500 }));
         }
 
       });
 
       res.on('end', () => {
-        console.log('No more data in response.');
       });
     });
 
     req.on('error', function(err) {
-      console.log(`problem with request: ${err.message}`);
       reject(err);
     });
 
