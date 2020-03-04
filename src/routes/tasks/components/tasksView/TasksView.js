@@ -4,9 +4,9 @@ import './TasksView.scss'
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import {ADD_FLASH_MESSAGE} from "../../../../api/flash/flashActions";
 import {
-  FINISH_TASK,
+  VALIDATE_TASK,
   GET_MINE_TASK,
-  GET_TASKS,
+  GET_TASKS, FINISH_TASK,
 } from "../../../../api/task/taskActions";
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -101,7 +101,7 @@ class TasksView extends Component {
   }
 
   finishTaskByDriver = (id) => {
-    this.props.finishTask({
+    this.props.validateTask({
       data: {
         taskId: id,
         statusId: 3
@@ -110,12 +110,24 @@ class TasksView extends Component {
     });
   };
 
-  finishTaskByAdmin = () => {
-
+  rejectTaskByAdmin = (id) => {
+    this.props.finishTask({
+      data: {
+        taskId: id,
+        statusId: 4
+      },
+      credentials: {emailAddress: this.props.auth.user.emailAddress, password: this.props.auth.user.password}
+    });
   };
 
-  rejectTaskByAdmin = () => {
-
+  finishTaskByAdmin = (id) => {
+    this.props.finishTask({
+      data: {
+        taskId: id,
+        statusId: 5
+      },
+      credentials: {emailAddress: this.props.auth.user.emailAddress, password: this.props.auth.user.password}
+    });
   };
 
   render = () => {
@@ -175,10 +187,10 @@ class TasksView extends Component {
                                             (task.taskStatus === 'VALIDATING' &&
                                                     (
                                                         <div>
-                                                          <Button variant="contained" color="primary" onClick={this.finishTaskByAdmin}>
+                                                          <Button variant="contained" color="primary" onClick={() => {this.finishTaskByAdmin(task.id)}}>
                                                             Approve
                                                           </Button>
-                                                            <Button variant="contained" color="secondary" onClick={this.rejectTaskByAdmin} style={{marginLeft: '35px'}}>
+                                                            <Button variant="contained" color="secondary" onClick={() => {this.rejectTaskByAdmin(task.id)}} style={{marginLeft: '35px'}}>
                                                               Reject
                                                             </Button>
                                                         </div>
@@ -221,6 +233,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     getTasks: (data) => dispatch({type: GET_TASKS, data}),
     getMineTasks: (data) => dispatch({type: GET_MINE_TASK, data}),
     showFlashMessage: (data) => dispatch({type: ADD_FLASH_MESSAGE, data}),
+    validateTask: (data) => dispatch({type: VALIDATE_TASK, data}),
     finishTask: (data) => dispatch({type: FINISH_TASK, data}),
   }
 };

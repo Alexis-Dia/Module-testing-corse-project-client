@@ -71,7 +71,7 @@ class DriversView extends Component {
     return (
       <div style={{height: '650px', marginLeft: '200px', marginTop: '75px'}}>
         <MuiThemeProvider>
-          {auth.isAuthenticated ?
+          {auth.isAuthenticated && auth.user.userRole === 'ADMIN' ?
               (
                   <Paper className={classes.root}>
                     <Table className={classes.table}>
