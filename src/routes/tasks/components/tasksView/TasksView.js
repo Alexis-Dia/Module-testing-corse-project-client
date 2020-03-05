@@ -70,7 +70,7 @@ class TasksView extends Component {
     }
   }
 
-  componentWillReceiveProps(nextprops) {
+  componentWillReceiveProps(nextpropsl) {
     if (nextprops.auth !== this.props.auth) {
       if (nextprops.auth.isAuthenticated) {
         if (nextprops.auth.user.userRole === 'USER') {
