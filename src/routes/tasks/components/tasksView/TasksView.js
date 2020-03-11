@@ -156,7 +156,7 @@ class TasksView extends Component {
                                 <TableCell numeric>{task.summaryDistance}</TableCell>
                                 <TableCell numeric>{task.weight}</TableCell>
                                 {task.taskStatus !== 'FREE' ? (<TableCell numeric>{task.driver.lastName + ' ' + task.driver.firstName + ', ID is ' + task.driver.userID}</TableCell>) : (<TableCell numeric></TableCell>)}
-                                <TableCell numeric>{task.car.number}</TableCell>
+                                <TableCell numeric>{task.car && task.car.number}</TableCell>
                                 <TableCell numeric>{task.taskStatus}</TableCell>
                                 <TableCell numeric>{task.name}</TableCell>
                                {/* {task.taskStatus !== 'FREE' ? (<TableCell numeric onClick={() => this.goToReportsByTaskId(task.id)}>{task.reports.length}</TableCell>) : (<TableCell numeric></TableCell>)}*/}
