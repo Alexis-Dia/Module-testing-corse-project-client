@@ -179,10 +179,10 @@ class TasksView extends Component {
                                             (task.taskStatus === 'VALIDATING' &&
                                                     (
                                                         <div>
-                                                          <Button variant="contained" color="primary" onClick={() => {this.finishTaskByAdmin(task.id)}}>
+                                                          <Button variant="contained" color="primary" onClick={() => {this.finishTaskByAdmin(task.id)}} style={{transform: "scale(0.8)"}}>
                                                             Approve
                                                           </Button>
-                                                            <Button variant="contained" color="secondary" onClick={() => {this.rejectTaskByAdmin(task.id)}} style={{marginLeft: '35px'}}>
+                                                            <Button variant="contained" color="secondary" onClick={() => {this.rejectTaskByAdmin(task.id)}} style={{transform: "scale(0.8)"}}>
                                                               Reject
                                                             </Button>
                                                         </div>

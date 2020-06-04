@@ -29,7 +29,7 @@ export function * tryFetchAuth (data) {
         } else if (response.httpStatus === 200) {
             yield put({ type: LOGIN + SUCCESS, response })
         } else {
-            yield put({ type: LOGIN + FAILURE, error })
+            yield put({ type: LOGIN + FAILURE, error:{message: response.data.message} })
         }
 
 }
@@ -81,12 +81,13 @@ export function * createUser (data) {
     const { response } = yield call(signUpApi, data);
     if (response.httpStatus === 200) {
         yield put({type: ADD_FLASH_MESSAGE, data: {type: "success", text: USER_WAS_SUCCESSFULLY_CREATED}});
-        yield delay(3000, true);
+        yield delay(7000, true);
         yield put({type: DELETE_BY_VALUE_FLASH_MESSAGES, data: USER_WAS_SUCCESSFULLY_CREATED})
     } else {
-        yield put({type: ADD_FLASH_MESSAGE, data: {type: "error", text: USER_EXISTS_WITH_THE_SAME_EMAIL}});
-        yield delay(3000, true);
-        yield put({type: DELETE_BY_VALUE_FLASH_MESSAGES, data: USER_EXISTS_WITH_THE_SAME_EMAIL})
+        let errMessage = response.data.message;
+        yield put({type: ADD_FLASH_MESSAGE, data: {type: "error", text: errMessage}});
+        yield delay(7000, true);
+        yield put({type: DELETE_BY_VALUE_FLASH_MESSAGES, data: errMessage})
     }
 
 }

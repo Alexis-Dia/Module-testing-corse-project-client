@@ -13,10 +13,12 @@ const loginReducer = (state = initialState, action = {}) => {
   switch (action.type) {
 
     case LOGIN + FAILURE:
+
+      let message = action.error.message;
       return {
         ...state,
         isAuthenticated: false,
-        user: {errors: LOGIN_INVALID_CREDENTIALS}
+        user: {errors: message}
       };
 
     case LOGIN + SUCCESS:
