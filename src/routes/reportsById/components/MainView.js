@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReportsByIdView from './reportsByIdView/ReportsByIdView'
-import FooterView from '../../Home/components/FooterView/FooterView'
+import FooterView from '../../home/components/footerView/FooterView'
 import './MainView.scss'
 
 export default class MainView extends Component {
